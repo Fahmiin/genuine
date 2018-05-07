@@ -78,7 +78,7 @@
 					<div class="card-reveal">
 						<span class="card-title grey-text text-darken-4">Editing...<i class="material-icons right">close</i></span>
 						<br>
-						<form action="{{route('update', ['id' => $user->id])}}" method="POST">
+						<form action="{{route('updateProfile', ['id' => $user->id])}}" method="POST">
 							@csrf
 							<div class="input-field">
 								<input type="text" name="name" value="{{$user->name}}">
@@ -253,9 +253,9 @@
 					<li>
 						<div class="collapsible-header"><i class="material-icons">content_paste</i>Recent Posts</div>
 						<div class="postsCollectionBody">
-							@foreach(App\Post::where("user_id", $user->id)->get() as $post)
+							@foreach($posts as $post)
 							<div class="postsCollection">
-								<img class="postsCollectionImage modal-trigger" href="#postModal" src="/uploads/postPic/{{$post->postPic}}">
+								<img class="postsCollectionImage modal-trigger" href="#postModal" src="/uploads/postPic/{{$post->postPic}}" data-id="{{$post->id}}">
 							</div>
 							@endforeach
 						</div>
@@ -296,7 +296,7 @@
 			<div class="row">
 				<div class="card col s12 m5 paddingOff">
 	                <div class="card-image">
-	                    <img src="" class="postsPic">
+	                    <img src="/uploads/postPic/{{$post->postPic}}" class="postsPic">
 	                </div>
 	                <div class="card-content">
 	                    <div class="row">
@@ -315,7 +315,7 @@
 	                    <div class="textarea">
 	                        <p>Liked by <strong>Mat</strong>, <strong>Quddus</strong> and <strong>26 others</strong></p>
 	                        <br>
-	                        <p><strong>{{$user->name}}</strong> Collected a bunch of these from before. Looks brand new after cleaning. Up for sale, first come, first serve!</p>
+	                        <p><strong>{{$user->name}}</strong> {{$post->postDescription}}</p>
 	                        <br>
 	                        <p class="totalComments">36 comments in total</p>
 	                    </div>
@@ -326,7 +326,13 @@
 	                <div class="card-action">
 	                    <span class="left spacingBottom"><i class="material-icons">favorite</i></span>
 	                    @auth
-	                    <a class="right spacingBottom">Delete</a>
+	                    <form action="{{route('deletePost', ['id' => $post->id])}}" method="POST">
+	                    	@csrf
+	                    	@method('DELETE')
+		                    <div class="input-field right">
+	                            <button type="submit" class="btn orange darken-2">Delete</button>
+	                        </div>
+		                </form>
 	                    @endauth
 	                </div>
 	            </div>

@@ -19,15 +19,14 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/profile', 'ProfileController@show')->name('profilePage');
 Route::post('/profile/pic/{id}', 'ProfileController@updateProfilepic')->name('profilePic');
-Route::post('/profile/update/{id}', 'ProfileController@update')->name('update');
+Route::post('/profile/update/{id}', 'ProfileController@updateProfile')->name('updateProfile');
 
-Route::post('/profile/details/about/{id}', 'DetailController@updateAbout')->name('detailsUpdateAbout');
-Route::post('/profile/details/education/{id}', 'DetailController@updateEducation')->name('detailsUpdateEducation');
-Route::post('/profile/details/work/{id}', 'DetailController@updateWork')->name('detailsUpdateWork');
+Route::post('/profile/details/about/{id}', 'ProfileController@updateAbout')->name('detailsUpdateAbout');
+Route::post('/profile/details/education/{id}', 'ProfileController@updateEducation')->name('detailsUpdateEducation');
+Route::post('/profile/details/work/{id}', 'ProfileController@updateWork')->name('detailsUpdateWork');
 
-Route::post('/profile/products', 'ProductController@createProduct')->name('createProduct');
-Route::get('/profile/products', 'ProductController@showProducts')->name('showProducts');
-Route::delete('/profile/product/{id}', 'ProductController@deleteProduct')->name('deleteProduct');
+Route::post('/profile/products', 'ProfileController@createProduct')->name('createProduct');
+Route::delete('/profile/product/{id}', 'ProfileController@deleteProduct')->name('deleteProduct');
 
-Route::post('/profile/post', 'PostController@createPost')->name('createPost');
-Route::get('/profile/post', 'PostController@showPosts')->name('showPosts');
+Route::post('/profile/post', 'ProfileController@createPost')->name('createPost');
+Route::delete('/profile/post/{id}', 'ProfileController@deletePost')->name('deletePost');
