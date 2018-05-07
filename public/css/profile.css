@@ -125,14 +125,6 @@ a
 	height: 350px;
 }
 
-#postPic
-{
-	width: 500px;
-	height: 300px;
-	object-fit: cover;
-	margin-bottom: 10px;
-}
-
 
 
 @media only screen and (max-width: 500px)

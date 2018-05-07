@@ -24,6 +24,19 @@ strong
 	margin-top: 12px;
 }
 
+#postPic
+{
+	width: 500px;
+	height: 300px;
+	object-fit: cover;
+	margin-bottom: 10px;
+}
+
+.hidden
+{
+	display: none;
+}
+
 @media only screen and (max-width: 500px)
 {
 	.profilePicNav

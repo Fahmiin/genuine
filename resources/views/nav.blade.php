@@ -11,9 +11,9 @@
                     </ul>
                 @else
                     <a class='dropdown-trigger right' data-target='dropdownUser'>
-                        <img src="/uploads/profilepic/{{Auth::user()->profilepic}}" class="profilePicNav">
+                        <img src="/uploads/profilepic/{{$user->profilepic}}" class="profilePicNav">
                     </a>
-                    <h6 class="right welcome">Welcome, {{Auth::user()->name}}</h6>
+                    <h6 class="right welcome">Welcome, {{$user->name}}</h6>
                 @endguest
             </div>
         </div>
@@ -23,7 +23,7 @@
         <li><a class="modal-trigger" href="#modalSignup"><strong>Signup</strong></a></li>
     </ul>
     <ul id="dropdownUser" class="dropdown-content">
-        <li><a href="{{route('profilePage', ['id' => 'Auth::user()->id'])}}"><strong>My Profile</strong></a></li>
+        <li><a href="{{route('profilePage', ['id' => '$user->id'])}}"><strong>My Profile</strong></a></li>
         <li><a class="modal-trigger" href="#modalLogout"><strong>Logout</strong></a></li>
     </ul>
     <div id="modalLogin" class="modal">
