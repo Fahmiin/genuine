@@ -1,0 +1,37 @@
+body
+{
+	background-color: #f0f0f0;
+}
+
+.welcome
+{
+    margin-top: 20px;
+    padding-right: 10px;
+}
+
+strong
+{
+	font-size: 12px;
+	color: #f57c00;
+}
+
+.profilePicNav
+{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	cursor: pointer;
+	margin-top: 12px;
+}
+
+@media only screen and (max-width: 500px)
+{
+	.profilePicNav
+	{
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		cursor: pointer;
+		margin-top: 9px;
+	}
+}

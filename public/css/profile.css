@@ -1,0 +1,150 @@
+.sectionWrap
+{
+	width: 90%;
+	margin: auto;
+}
+
+.maxWrap
+{
+	width: 95%;
+	margin: auto;
+}
+
+.spacing
+{
+	padding: 10px;
+}
+
+.profilePic
+{
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin: 10px;
+}
+
+#fileUpload
+{
+	display: none;
+	width: 0;
+	height: 0;
+}
+
+.collapsible
+{
+	margin-top: 25px;
+}
+
+.avatar
+{
+	padding-bottom: 0 !important;
+	padding-top: 0 !important;
+}
+
+.contact
+{
+	margin-top: 20px;
+}
+
+.contactBM
+{
+	margin-top: 15px;
+}
+
+.contactDetails
+{
+	margin: 0;
+	padding-top: 28px;
+}
+
+#editAboutMe
+{
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.hidden
+{
+	display: none;
+}
+
+a
+{
+	cursor: pointer;
+}
+
+.body
+{
+	min-height: 200px;
+	overflow: auto;
+}
+
+.spacingBottom
+{
+	margin-bottom: 10px;
+}
+
+.editProductsButton
+{
+	display: grid;
+	grid-template-columns: 1fr 12fr 0.55fr;
+}
+
+.postsCollectionBody
+{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.postsCollection
+{
+	
+	border: 1px solid #fff;
+}
+
+.postsCollectionImage
+{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.postsCollectionImage:hover
+{
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.paddingOff
+{
+	padding: 0 !important;
+}
+
+.postsPic
+{
+	height: 350px;
+}
+
+#postPic
+{
+	width: 500px;
+	height: 300px;
+	object-fit: cover;
+	margin-bottom: 10px;
+}
+
+
+
+@media only screen and (max-width: 500px)
+{
+	.editProductsButton
+	{
+		display: grid;
+		grid-template-columns: 1fr 12fr 1.55fr;
+	}
+
+	.postsPic
+	{
+		height: 275px;
+	}
+}
