@@ -7,6 +7,9 @@
 @section('content')
 <section>
     <div class="row">
+        @guest
+        <h1 class="center">Please log in</h1>
+        @else
         @foreach($posts as $post)
         <div class="col s12 m4">
             <div class="card">
@@ -50,7 +53,8 @@
                 </div>
             </div>
         </div>
-        @endforeach 
+        @endforeach
+        @endguest
     </div>
 </section>
 @endsection

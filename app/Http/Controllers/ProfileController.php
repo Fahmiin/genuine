@@ -15,16 +15,21 @@ class ProfileController extends Controller
     //SHOW ALL INFO OF PROFILE PAGE
     public function show()
     {
-        $user = Auth::user();
-        $detail = Detail::all();
-        $products = Product::where("user_id", $user->id)->get();
-        $posts = Post::where("user_id", $user->id)->get();
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            $detail = Detail::all();
+            $products = Product::where("user_id", $user->id)->get();
+            $posts = Post::where("user_id", $user->id)->get();
 
-        return view('profile')
-            ->with('user',$user)
-            ->with('detail', $detail)
-            ->with('products', $products)
-            ->with('posts', $posts);
+            return view('profile')
+                ->with('user',$user)
+                ->with('detail', $detail)
+                ->with('products', $products)
+                ->with('posts', $posts);
+        }
+
+        return view('profile');
     }
 
 

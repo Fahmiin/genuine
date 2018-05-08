@@ -252,6 +252,8 @@
 				<ul class="collapsible">
 					<li>
 						<div class="collapsible-header"><i class="material-icons">content_paste</i>Recent Posts</div>
+						@if(empty($posts))
+						@else
 						<div class="postsCollectionBody">
 							@foreach($posts as $post)
 							<div class="postsCollection">
@@ -259,6 +261,7 @@
 							</div>
 							@endforeach
 						</div>
+						@endif
 					</li>
 				</ul>
 			</div>
@@ -293,6 +296,9 @@
 	</div>
 	<div class="modal maxWrap" id="postModal">
 		<div class="modal-content">
+			@if(empty($post))
+			<h1>No posts to show</h1>
+			@else
 			<div class="row">
 				<div class="card col s12 m5 paddingOff">
 	                <div class="card-image">
@@ -340,6 +346,7 @@
 	            	<h4 class="center">Comments Here</h4>
 	            </div>
             </div>
+            @endif
         </div>
 	</div>
 @endsection
