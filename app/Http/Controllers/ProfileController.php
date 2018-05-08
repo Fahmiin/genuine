@@ -15,6 +15,7 @@ class ProfileController extends Controller
     //SHOW ALL INFO OF PROFILE PAGE
     public function show()
     {
+        //PASS THESE DATA IF USER IS LOGGED IN
         if (Auth::check())
         {
             $user = Auth::user();

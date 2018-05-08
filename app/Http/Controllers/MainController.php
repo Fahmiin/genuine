@@ -11,6 +11,7 @@ class MainController extends Controller
 {
 	public function showPosts()
 	{
+		//PASS THESE DATA IF USER IS LOGGED IN
 		if (Auth::check())
 		{
 			$user = Auth::user();

@@ -257,7 +257,7 @@
 						<div class="postsCollectionBody">
 							@foreach($posts as $post)
 							<div class="postsCollection">
-								<img class="postsCollectionImage modal-trigger" href="#postModal" src="/uploads/postPic/{{$post->postPic}}" data-id="{{$post->id}}">
+								<img class="postsCollectionImage modal-trigger" href="#postModal{{$post->id}}" src="/uploads/postPic/{{$post->postPic}}">
 							</div>
 							@endforeach
 						</div>
@@ -294,61 +294,63 @@
             </div>
 		</div>
 	</div>
-	<div class="modal maxWrap" id="postModal">
+
+	@foreach($posts as $post)
+	<div class="modal maxWrap" id="postModal{{$post->id}}">
 		<div class="modal-content">
 			@if(empty($post))
-			<h1>No posts to show</h1>
 			@else
-			<div class="row">
-				<div class="card col s12 m5 paddingOff">
-	                <div class="card-image">
-	                    <img src="/uploads/postPic/{{$post->postPic}}" class="postsPic">
-	                </div>
-	                <div class="card-content">
-	                    <div class="row">
-	                        <div class="col s3">
-	                            <img src="/uploads/profilepic/{{$user->profilepic}}" class="profileImage">
-	                        </div>
-	                        <div class="col s9">
-	                            <p class="card-title">{{$user->name}}<span class="right"><i class="material-icons modal-trigger settings" data-target="modalSettings">more_vert</i></span></p>
-	                        </div>
-	                    </div>
-	                    <div class="modal" id="modalSettings">
-	                        <div class="modal-content">
-	                            <p>Settings</p>
-	                        </div>
-	                    </div>
-	                    <div class="textarea">
-	                        <p>Liked by <strong>Mat</strong>, <strong>Quddus</strong> and <strong>26 others</strong></p>
-	                        <br>
-	                        <p><strong>{{$user->name}}</strong> {{$post->postDescription}}</p>
-	                        <br>
-	                        <p class="totalComments">36 comments in total</p>
-	                    </div>
-	                    <div class="timestamp">
-	                        <p>30 mins ago</p>
-	                    </div>
-	                </div>
-	                <div class="card-action">
-	                    <span class="left spacingBottom"><i class="material-icons">favorite</i></span>
-	                    @auth
-	                    <form action="{{route('deletePost', ['id' => $post->id])}}" method="POST">
-	                    	@csrf
-	                    	@method('DELETE')
-		                    <div class="input-field right">
-	                            <button type="submit" class="btn orange darken-2">Delete</button>
-	                        </div>
-		                </form>
-	                    @endauth
-	                </div>
-	            </div>
-	            <div class="col s12 m7">
-	            	<h4 class="center">Comments Here</h4>
-	            </div>
-            </div>
+				<div class="row">
+					<div class="card col s12 m5 paddingOff">
+		                <div class="card-image">
+		                    <img src="/uploads/postPic/{{$post->postPic}}" class="postsPic">
+		                </div>
+		                <div class="card-content">
+		                    <div class="row">
+		                        <div class="col s3">
+		                            <img src="/uploads/profilepic/{{$user->profilepic}}" class="profileImage">
+		                        </div>
+		                        <div class="col s9">
+		                            <p class="card-title">{{$user->name}}<span class="right"><i class="material-icons modal-trigger settings" data-target="modalSettings">more_vert</i></span></p>
+		                        </div>
+		                    </div>
+		                    <div class="modal" id="modalSettings">
+		                        <div class="modal-content">
+		                            <p>Settings</p>
+		                        </div>
+		                    </div>
+		                    <div class="textarea">
+		                        <p>Liked by <strong>Mat</strong>, <strong>Quddus</strong> and <strong>26 others</strong></p>
+		                        <br>
+		                        <p><strong>{{$user->name}}</strong> {{$post->postDescription}}</p>
+		                        <br>
+		                        <p class="totalComments">36 comments in total</p>
+		                    </div>
+		                    <div class="timestamp">
+		                        <p>30 mins ago</p>
+		                    </div>
+		                </div>
+		                <div class="card-action">
+		                    <span class="left spacingBottom"><i class="material-icons">favorite</i></span>
+		                    @auth
+		                    <form action="{{route('deletePost', ['id' => $post->id])}}" method="POST">
+		                    	@csrf
+		                    	@method('DELETE')
+			                    <div class="input-field right">
+		                            <button type="submit" class="btn orange darken-2">Delete</button>
+		                        </div>
+			                </form>
+		                    @endauth
+		                </div>
+		            </div>
+		            <div class="col s12 m7">
+		            	<h4 class="center">Comments Here</h4>
+		            </div>
+		        </div>
             @endif
         </div>
 	</div>
+	@endforeach
 @endsection
 
 @section('profileJS')
