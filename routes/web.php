@@ -17,7 +17,7 @@ Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/profile', 'ProfileController@show')->name('profilePage');
+Route::get('/profile/{id}', 'ProfileController@show')->name('profilePage');
 Route::post('/profile/pic/{id}', 'ProfileController@updateProfilepic')->name('profilePic');
 Route::post('/profile/update/{id}', 'ProfileController@updateProfile')->name('updateProfile');
 

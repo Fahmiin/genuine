@@ -3,6 +3,12 @@ strong
 	color: #f57c00;
 }
 
+.profileLink
+{
+	text-decoration: none;
+	color: #000;
+}
+
 .pic
 {
 	height: 300px;

@@ -22,6 +22,11 @@ class MainController extends Controller
 				->with('posts', $posts);
 		}
 		
-		return view('main');
+		$user = User::all();
+		$posts = Post::all();
+		
+		return view('main')
+			->with('user', $user)
+			->with('posts', $posts);
 	}
 }

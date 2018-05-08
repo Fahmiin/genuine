@@ -13,7 +13,7 @@ use Image;
 class ProfileController extends Controller
 {
     //SHOW ALL INFO OF PROFILE PAGE
-    public function show()
+    public function show($id)
     {
         //PASS THESE DATA IF USER IS LOGGED IN
         if (Auth::check())
@@ -30,7 +30,16 @@ class ProfileController extends Controller
                 ->with('posts', $posts);
         }
 
-        return view('profile');
+        $user = User::find($id);
+        $detail = Detail::find($id);
+        $products = Product::where("user_id", $user->id)->get();
+        $posts = Post::where("user_id", $user->id)->get();
+
+        return view('profile')
+            ->with('user', $user)
+            ->with('detail', $detail)
+            ->with('products', $products)
+            ->with('posts', $posts);
     }
 
 

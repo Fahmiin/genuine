@@ -16,6 +16,7 @@
 					<div class="center-align">
 						<h4 class="spacing">Hi, I'm {{$user->name}}</h4>
 						<img src="/uploads/profilepic/{{$user->profilepic}}" class="profilePic responsive-img">
+						@auth
 						<form action="{{route('profilePic', ['id' => $user->id])}}" enctype="multipart/form-data" method="POST" >
 							@csrf
 							<label for="fileUpload">
@@ -24,6 +25,7 @@
 							<input type="file" name="profilepic" id="fileUpload" >
 							<button class="btn-floating btn-small waves-effect waves-light orange darken-2" type="submit"><i class="material-icons">save</i></button>
 						</form>
+						@endauth
 					</div>
 					<div class="card-content">
 						<p class="center-align"><em>"{{$user->tagline}}"</em></p>
