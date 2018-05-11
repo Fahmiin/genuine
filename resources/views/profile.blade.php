@@ -4,31 +4,29 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/profile.css')}}">
 @endsection
 
-@section('mainCSS')
-	<link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
-@endsection
-
 @section('content')
 	<div class="sectionWrap">
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="card">
 					<div class="center-align">
-						<h4 class="spacing">Hi, I'm {{$user->name}}</h4>
-						<img src="/uploads/profilepic/{{$user->profilepic}}" class="profilePic responsive-img">
+						<h4 class="spacing">Hi, I'm {{$userP->name}}</h4>
+						<img src="/uploads/profilepic/{{$userP->profilepic}}" class="profilePic responsive-img">
 						@auth
-						<form action="{{route('profilePic', ['id' => $user->id])}}" enctype="multipart/form-data" method="POST" >
-							@csrf
-							<label for="fileUpload">
-								<i class="btn-floating btn-small waves-effect waves-light orange darken-2"><i class="material-icons">create</i></i>
-							</label>
-							<input type="file" name="profilepic" id="fileUpload" >
-							<button class="btn-floating btn-small waves-effect waves-light orange darken-2" type="submit"><i class="material-icons">save</i></button>
-						</form>
+							@if($user->id == $userP->id)
+							<form action="{{route('profilePic', ['id' => $userP->id])}}" enctype="multipart/form-data" method="POST" >
+								@csrf
+								<label for="fileUpload">
+									<i class="btn-floating btn-small waves-effect waves-light orange darken-2"><i class="material-icons">create</i></i>
+								</label>
+								<input type="file" name="profilepic" id="fileUpload" >
+								<button class="btn-floating btn-small waves-effect waves-light orange darken-2" type="submit"><i class="material-icons">save</i></button>
+							</form>
+							@endif
 						@endauth
 					</div>
 					<div class="card-content">
-						<p class="center-align"><em>"{{$user->tagline}}"</em></p>
+						<p class="center-align"><em>"{{$userP->tagline}}"</em></p>
 					</div>
 					<div class="card-action hide-on-large-only">
 						<a id="seeMoreProfile">See more</a>
@@ -49,57 +47,59 @@
 							<ul class="collection black-text">
 								<li class="collection-item avatar">
 									<i class="material-icons circle orange darken-2 contact">phone_android</i>
-									<h6 class="contactDetails">{{$user->mobile}}</h6>
+									<h6 class="contactDetails">{{$userP->mobile}}</h6>
 									<a href="#!" class="secondary-content contactBM"><i class="material-icons">bookmark_border</i></a>
 								</li>
 								<li class="collection-item avatar">
 									<i class="material-icons circle orange darken-2 contact">web</i>
-									<h6 class="contactDetails">{{$user->website}}</h6>
+									<h6 class="contactDetails">{{$userP->website}}</h6>
 									<a href="#!" class="secondary-content contactBM"><i class="material-icons">bookmark_border</i></a>
 								</li>
 								<li class="collection-item avatar">
 									<i class="material-icons circle orange darken-2 contact">email</i>
-									<h6 class="contactDetails">{{$user->contact_email}}</h6>
+									<h6 class="contactDetails">{{$userP->contact_email}}</h6>
 									<a href="#!" class="secondary-content contactBM"><i class="material-icons">bookmark_border</i></a>
 								</li>
 							</ul>
 						</div>
-						@guest
-						@else
-							<div class="card-action hide-on-large-only">
+						@auth
+							@if($user->id == $userP->id)
+								<div class="card-action hide-on-large-only">
+									<a href="#" class="activator">Edit</a>
+								</div>
+							@endif
+						@endauth
+					</div>
+					@auth
+						@if($user->id == $userP->id)
+							<div class="card-action hide-on-med-and-down">
 								<a href="#" class="activator">Edit</a>
 							</div>
-						@endguest
-					</div>
-					@guest
-					@else
-						<div class="card-action hide-on-med-and-down">
-							<a href="#" class="activator">Edit</a>
-						</div>
-					@endguest
+						@endif
+					@endauth
 					<div class="card-reveal">
 						<span class="card-title grey-text text-darken-4">Editing...<i class="material-icons right">close</i></span>
 						<br>
-						<form action="{{route('updateProfile', ['id' => $user->id])}}" method="POST">
+						<form action="{{route('updateProfile', ['id' => $userP->id])}}" method="POST">
 							@csrf
 							<div class="input-field">
-								<input type="text" name="name" value="{{$user->name}}">
+								<input type="text" name="name" value="{{$userP->name}}">
 								<label for="name">Username</label>
 							</div>
 							<div class="input-field">
-								<textarea class="materialize-textarea" name="tagline">{{$user->tagline}}</textarea>
+								<textarea class="materialize-textarea" name="tagline">{{$userP->tagline}}</textarea>
 								<label for="tagline">Tagline</label>
 							</div>
 							<div class="input-field">
-								<input type="text" name="mobile" value="{{$user->mobile}}">
+								<input type="text" name="mobile" value="{{$userP->mobile}}">
 								<label for="mobile">Phone number</label>
 							</div>
 							<div class="input-field">
-								<input type="text" name="website" value="{{$user->website}}">
+								<input type="text" name="website" value="{{$userP->website}}">
 								<label for="website">Website</label>
 							</div>
 							<div class="input-field">
-								<input type="email" name="contact_email" value="{{$user->contact_email}}" class="validate">
+								<input type="email" name="contact_email" value="{{$userP->contact_email}}" class="validate">
 								<label for="contact_email">Email</label>
 							</div>
 							<div class="input-field center-align">
@@ -116,21 +116,23 @@
 						<div class="collapsible-header"><i class="material-icons">person</i>About me</div>
 						<div class="collapsible-body">
 							<div id="aboutMe">
-								@if(empty($user->detail->about))
+								@if(empty($userP->detail->about))
 									<span>...tell us more about yourself...</span>
 								@else
-									<span>{{$user->detail->about}}</span>
+									<span>{{$userP->detail->about}}</span>
 								@endif
 								@auth
-								<i class="btn-floating btn-small waves-effect waves-light orange darken-2 right"><i class="material-icons editButton" data-target="#aboutMe" data-target2="#editAboutMe">create</i></i>
+									@if($user->id == $userP->id)
+									<i class="btn-floating btn-small waves-effect waves-light orange darken-2 right"><i class="material-icons editButton" data-target="#aboutMe" data-target2="#editAboutMe">create</i></i>
+									@endif
 								@endauth
 							</div>
 							<div class="hidden row" id="editAboutMe">
-								<form action="{{route('detailsUpdateAbout', ['id' => $user->id])}}" method="POST">
+								<form action="{{route('detailsUpdateAbout', ['id' => $userP->id])}}" method="POST">
 									@csrf
 									<div class="col m10">
 										<div class="input-field">
-											<textarea class="materialize-textarea" name="about">{{$user->detail->about}}</textarea>
+											<textarea class="materialize-textarea" name="about">{{$userP->detail->about}}</textarea>
 											<label for="about">About Me</label>
 										</div>
 									</div>
@@ -148,21 +150,23 @@
 						<div class="collapsible-header"><i class="material-icons">laptop_chromebook</i>My education</div>
 						<div class="collapsible-body">
 							<div id="education">
-								@if(empty($user->detail->education))
+								@if(empty($userP->detail->education))
 									<span>...tell us where you went...</span>
 								@else
-									<span>{{$user->detail->education}}</span>
+									<span>{{$userP->detail->education}}</span>
 								@endif
 								@auth
-								<i class="btn-floating btn-small waves-effect waves-light orange darken-2 right"><i class="material-icons editButton" data-target="#education" data-target2="#editEducation">create</i></i>
-								@endauth
+									@if($user->id == $userP->id)
+									<i class="btn-floating btn-small waves-effect waves-light orange darken-2 right"><i class="material-icons editButton" data-target="#education" data-target2="#editEducation">create</i></i>
+									@endif
+								@endauth	
 							</div>
 							<div class="hidden row" id="editEducation">
-								<form action="{{route('detailsUpdateEducation', ['id' => $user->id])}}" method="POST">
+								<form action="{{route('detailsUpdateEducation', ['id' => $userP->id])}}" method="POST">
 									@csrf
 									<div class="col m10">
 										<div class="input-field">
-											<textarea class="materialize-textarea" name="education">{{$user->detail->education}}</textarea>
+											<textarea class="materialize-textarea" name="education">{{$userP->detail->education}}</textarea>
 											<label for="education">My education</label>
 										</div>
 									</div>
@@ -180,21 +184,23 @@
 						<div class="collapsible-header"><i class="material-icons">work</i>My work experience</div>
 						<div class="collapsible-body">
 							<div id="work">
-								@if(empty($user->detail->work))
+								@if(empty($userP->detail->work))
 									<span>...tell us where you've worked...</span>
 								@else
-									<span>{{$user->detail->work}}</span>
+									<span>{{$userP->detail->work}}</span>
 								@endif
 								@auth
-								<i class="btn-floating btn-small waves-effect waves-light orange darken-2 right"><i class="material-icons editButton" data-target="#work" data-target2="#editWork">create</i></i>
-								@endauth
+									@if($user->id == $userP->id)
+									<i class="btn-floating btn-small waves-effect waves-light orange darken-2 right"><i class="material-icons editButton" data-target="#work" data-target2="#editWork">create</i></i>
+									@endif
+								@endauth	
 							</div>
 							<div class="hidden row" id="editWork">
-								<form action="{{route('detailsUpdateWork', ['id' => $user->id])}}" method="POST">
+								<form action="{{route('detailsUpdateWork', ['id' => $userP->id])}}" method="POST">
 									@csrf
 									<div class="col m10">
 										<div class="input-field">
-											<textarea class="materialize-textarea" name="work">{{$user->detail->work}}</textarea>
+											<textarea class="materialize-textarea" name="work">{{$userP->detail->work}}</textarea>
 											<label for="work">My work experience</label>
 										</div>
 									</div>
@@ -218,12 +224,14 @@
 										<div class="card-content white-text">
 											<span class="card-title">{{$product->productTitle}}</span>
 											@auth
-											<form action="{{route('deleteProduct', ['id' => $product->id])}}" method="POST">
-												@csrf
-												@method('DELETE')
-												<button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">close</i></button>
-											</form>
-											@endauth
+												@if($user->id == $userP->id)
+												<form action="{{route('deleteProduct', ['id' => $product->id])}}" method="POST">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">close</i></button>
+												</form>
+												@endif
+											@endauth	
 											<p>{{$product->productDescription}}</p>
 										</div>
 										<div class="card-action">
@@ -237,8 +245,10 @@
 								<div></div>
 								<div>
 									@auth
-									<a class="btn-floating btn-small waves-effect waves-light orange darken-2 spacingBottom modal-trigger right" href="#productsModal"><i class="material-icons">create</i></a>
-									@endauth
+										@if($user->id == $userP->id)
+										<a class="btn-floating btn-small waves-effect waves-light orange darken-2 spacingBottom modal-trigger right" href="#productsModal"><i class="material-icons">create</i></a>
+										@endif
+									@endauth	
 								</div>
 								<div></div>
 							</div>
@@ -269,6 +279,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="modal" id="productsModal">
 		<div class="modal-content">
 			<h4 class="center">Add a new product or service</h4>
@@ -310,10 +321,10 @@
 		                <div class="card-content">
 		                    <div class="row">
 		                        <div class="col s3">
-		                            <img src="/uploads/profilepic/{{$user->profilepic}}" class="profileImage">
+		                            <img src="/uploads/profilepic/{{$userP->profilepic}}" class="profileImage">
 		                        </div>
 		                        <div class="col s9">
-		                            <p class="card-title">{{$user->name}}<span class="right"><i class="material-icons modal-trigger settings" data-target="modalSettings">more_vert</i></span></p>
+		                            <p class="card-title">{{$userP->name}}<span class="right"><i class="material-icons modal-trigger settings" data-target="modalSettings">more_vert</i></span></p>
 		                        </div>
 		                    </div>
 		                    <div class="modal" id="modalSettings">
@@ -324,7 +335,7 @@
 		                    <div class="textarea">
 		                        <p>Liked by <strong>Mat</strong>, <strong>Quddus</strong> and <strong>26 others</strong></p>
 		                        <br>
-		                        <p><strong>{{$user->name}}</strong> {{$post->postDescription}}</p>
+		                        <p><strong>{{$userP->name}}</strong> {{$post->postDescription}}</p>
 		                        <br>
 		                        <p class="totalComments">36 comments in total</p>
 		                    </div>
@@ -335,14 +346,16 @@
 		                <div class="card-action">
 		                    <span class="left spacingBottom"><i class="material-icons">favorite</i></span>
 		                    @auth
-		                    <form action="{{route('deletePost', ['id' => $post->id])}}" method="POST">
-		                    	@csrf
-		                    	@method('DELETE')
-			                    <div class="input-field right">
-		                            <button type="submit" class="btn orange darken-2">Delete</button>
-		                        </div>
-			                </form>
-		                    @endauth
+			                    @if($user->id == $userP->id)
+			                    <form action="{{route('deletePost', ['id' => $post->id])}}" method="POST">
+			                    	@csrf
+			                    	@method('DELETE')
+				                    <div class="input-field right">
+			                            <button type="submit" class="btn orange darken-2">Delete</button>
+			                        </div>
+				                </form>
+			                    @endif
+			                @endauth    
 		                </div>
 		            </div>
 		            <div class="col s12 m7">

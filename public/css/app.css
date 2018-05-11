@@ -3,6 +3,12 @@ body
 	background-color: #f0f0f0;
 }
 
+.containerMedium
+{
+	width: 80%;
+	margin: auto;
+}
+
 .welcome
 {
     margin-top: 20px;
@@ -36,6 +42,30 @@ strong
 {
 	display: none;
 }
+
+.searchNav
+{
+	margin-top: 12px !important;
+	padding: 10px !important;
+	border-radius: 5px !important;
+	width: 375px !important;
+}
+
+.searchButton
+{
+	padding-top: 0px !important;
+}
+
+.searchBarModal
+{
+	padding-left: 5px !important;
+}
+
+.searchButtonModal
+{
+	margin-top: 10px !important;
+}
+
 
 @media only screen and (max-width: 500px)
 {

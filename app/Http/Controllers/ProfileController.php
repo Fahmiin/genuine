@@ -13,30 +13,39 @@ use Image;
 class ProfileController extends Controller
 {
     //SHOW ALL INFO OF PROFILE PAGE
-    public function show($id)
+    public function show()
     {
         //PASS THESE DATA IF USER IS LOGGED IN
         if (Auth::check())
         {
             $user = Auth::user();
+            $userP = Auth::user();
             $detail = Detail::all();
-            $products = Product::where("user_id", $user->id)->get();
-            $posts = Post::where("user_id", $user->id)->get();
+            $products = Product::where("user_id", $userP->id)->get();
+            $posts = Post::where("user_id", $userP->id)->get();
 
             return view('profile')
-                ->with('user',$user)
+                ->with('user', $user)
+                ->with('userP',$userP)
                 ->with('detail', $detail)
                 ->with('products', $products)
                 ->with('posts', $posts);
         }
+    }
 
-        $user = User::find($id);
+
+    //SHOW ALL DATA WHEN GUEST VISITS
+    public function showLoggedout($id)
+    {
+        $user = Auth::user();
+        $userP = User::find($id);
         $detail = Detail::find($id);
-        $products = Product::where("user_id", $user->id)->get();
-        $posts = Post::where("user_id", $user->id)->get();
+        $products = Product::where("user_id", $userP->id)->get();
+        $posts = Post::where("user_id", $userP->id)->get();
 
         return view('profile')
             ->with('user', $user)
+            ->with('userP', $userP)
             ->with('detail', $detail)
             ->with('products', $products)
             ->with('posts', $posts);

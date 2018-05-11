@@ -4,9 +4,11 @@
     <ul>
         <li><a href="#" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="Private message"><i class="large material-icons">chat</i></a></li>
         <li><a href="#newPostModal" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="New post"><i class="large material-icons">edit</i></a></li>
-        <li><a href="#" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="Search"><i class="large material-icons">search</i></a></li>
+        <li><a href="#searchModal" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger hide-on-large-only" data-position="left" data-tooltip="Search"><i class="large material-icons">search</i></a></li>
         <li><a href="#" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="Notifications"><i class="large material-icons">notifications</i></a></li>
     </ul>
+    @else
+    <a class="btn-floating orange darken-4 btn-large modal-trigger hide-on-large-only" href="#searchModal"><i class="large material-icons">search</i></a>
     @endauth
 </div>
 <div class="modal" id="newPostModal">
@@ -32,4 +34,18 @@
             </div>
 		</form>
 	</div>
+</div>
+<div class="modal" id="searchModal">
+    <div class="modal-content">
+        <h4 class="center">Search for a user</h4>
+        <form action="{{route('searchUsers')}}" method="POST">
+            @csrf
+            <div class="input-field">
+                <input type="search" id="search" class="searchBarModal" placeholder="Your search begins here..." name="search" required>
+                <div class="center-align">
+                    <button class="btn waves-effect waves-light orange darken-2 searchButtonModal" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
