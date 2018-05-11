@@ -18,8 +18,7 @@ class ProfileController extends Controller
         //PASS THESE DATA IF USER IS LOGGED IN
         if (Auth::check())
         {
-            $user = Auth::user();
-            $userP = Auth::user();
+            $user = $userP = Auth::user();
             $detail = Detail::all();
             $products = Product::where("user_id", $userP->id)->get();
             $posts = Post::where("user_id", $userP->id)->get();

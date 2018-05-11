@@ -14,7 +14,7 @@ class SearchController extends Controller
     	{
     		$user = Auth::user();
 	        $search = $request->get('search');
-	        $searchedUsers = User::where('name', 'LIKE', "%$search%")->get();
+	        $searchedUsers = User::where('name', 'LIKE', "%$search%")->limit(10)->get();
 
 	        return view('search')
 	        	->with('user', $user)
@@ -22,10 +22,9 @@ class SearchController extends Controller
     	}
 
         $search = $request->get('search');
-        $searchedUsers = User::where('name', 'LIKE', "%$search%")->get();
+        $searchedUsers = User::where('name', 'LIKE', "%$search%")->limit(10)->get();
 
-        return view('search')
-        	->with('searchedUsers', $searchedUsers);
+        return view('search')->with('searchedUsers', $searchedUsers);
     }   
 
 }

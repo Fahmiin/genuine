@@ -7,14 +7,21 @@
 @section('content')
 	<div class="container">
 		@if(count($searchedUsers) > 0)
-		<ul class="collection">
+		<div class="collection">
 			@foreach($searchedUsers as $searchedUser)
-				<li class="collection-item avatar">
-					<img src="/uploads/profilepic/{{$searchedUser->profilepic}}" class="circle">
-					<span class="title"><a href="profile/{{$searchedUser->id}}" class="profileLink">{{$searchedUser->name}}</a></span>
-				</li>
+				<a href="profile/{{$searchedUser->id}}" class="collection-item">
+					<div class="row">
+						<div class="col s1 m1 center-align">
+							<img src="/uploads/profilepic/{{$searchedUser->profilepic}}" class="circle">
+						</div>
+						<div class="col s11 m11 profileBar">
+							<span class="profileLink">{{$searchedUser->name}}</span>
+							<span class="profileTagline right hide-on-med-and-down"><em>" ... {{$searchedUser->tagline}} ... "</em></span>
+						</div>
+					</div>
+				</a>
 			@endforeach
-			</ul>
+		</div>
 		@else
 			<h4 class="center-align">Oops! No users found</h4>
 		@endif
