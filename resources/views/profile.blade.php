@@ -324,10 +324,10 @@
 		                            <img src="/uploads/profilepic/{{$userP->profilepic}}" class="profileImage">
 		                        </div>
 		                        <div class="col s9">
-		                            <p class="card-title">{{$userP->name}}<span class="right"><i class="material-icons modal-trigger settings" data-target="modalSettings">more_vert</i></span></p>
+		                            <p class="card-title">{{$userP->name}}<span class="right"><i class="material-icons modal-trigger settings" data-target="modalSettings{{$post->id}}">more_vert</i></span></p>
 		                        </div>
 		                    </div>
-		                    <div class="modal" id="modalSettings">
+		                    <div class="modal" id="modalSettings{{$post->id}}">
 		                        <div class="modal-content">
 		                            <p>Settings</p>
 		                        </div>

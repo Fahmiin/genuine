@@ -38,13 +38,11 @@
 <div class="modal" id="searchModal">
     <div class="modal-content">
         <h4 class="center">Search for a user</h4>
-        <form action="{{route('searchUsers')}}" method="POST">
+        <form action="{{route('liveSearch')}}" method="GET">
             @csrf
             <div class="input-field">
-                <input type="search" id="search" class="searchBarModal" placeholder="Your search begins here..." name="search" required>
-                <div class="center-align">
-                    <button class="btn waves-effect waves-light orange darken-2 searchButtonModal" type="submit">Search</button>
-                </div>
+                <input type="search" id="search2" class="searchBarModal" placeholder="Your search begins here..." name="search" required>
+                <ul class="searchResults collection hidden searchDropdown"></ul>
             </div>
         </form>
     </div>

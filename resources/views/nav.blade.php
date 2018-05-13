@@ -7,13 +7,11 @@
                         <a href="/" class="brand-logo left">Genuine</a>
                     </div>
                     <div class="col s6 m7 hide-on-med-and-down">
-                        <form action="{{route('searchUsers')}}" method="POST">
+                        <form action="{{route('liveSearch')}}" method="GET">
                             @csrf
                             <div class="col m8 input-field">
                                 <input id="search" type="search" placeholder="Your search begins here..." class="searchNav" name="search" required>
-                            </div>
-                            <div class="col m4">
-                                <button class="btn waves-effect waves-light orange darken-2 searchButton" type="submit">Search</button>
+                                <span><ul class="searchResults collection hidden searchDropdown"></ul></span>
                             </div>
                         </form>
                     </div>

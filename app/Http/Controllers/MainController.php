@@ -11,11 +11,10 @@ class MainController extends Controller
 {
 	public function showPosts()
 	{
-		//PASS THESE DATA IF USER IS LOGGED IN
 		if (Auth::check())
 		{
 			$user = Auth::user();
-			$posts = Post::where("user_id", $user->id)->get();
+			$posts = Post::all();
 
 			return view('main')
 				->with('user', $user)

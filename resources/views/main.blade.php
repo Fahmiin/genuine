@@ -19,7 +19,7 @@
                             <img src="/uploads/profilepic/{{$post->user->profilepic}}" class="profileImage">
                         </div>
                         <div class="col s9">
-                            <p class="card-title"><a href="profile/{{$post->user->id}}" class="profileLink">{{$post->user->name}}</a><span class="right"><i class="material-icons modal-trigger settings" data-target="modalSettings">more_vert</i></span></p>
+                            <p class="card-title"><a href="profile/{{$post->user->id}}" class="profileLinkMain">{{$post->user->name}}</a><span class="right"><i class="material-icons modal-trigger settings" data-target="modalSettings">more_vert</i></span></p>
                         </div>
                     </div>
                     <div class="modal" id="modalSettings">

@@ -33,4 +33,4 @@ Route::post('/profile/post', 'ProfileController@createPost')->name('createPost')
 Route::delete('/profile/post/{id}', 'ProfileController@deletePost')->name('deletePost');
 
 Route::get('/search', 'MainController@showPosts')->name('showPosts');
-Route::post('/search', 'SearchController@search')->name('searchUsers');
+Route::get('/search/users', 'SearchController@liveSearch')->name('liveSearch');

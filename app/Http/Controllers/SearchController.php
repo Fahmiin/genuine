@@ -8,23 +8,40 @@ use Auth;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
+    public function liveSearch(Request $request)
     {
-    	if (Auth::check())
+    	if ($request->ajax())
     	{
-    		$user = Auth::user();
-	        $search = $request->get('search');
-	        $searchedUsers = User::where('name', 'LIKE', "%$search%")->limit(10)->get();
+    		$output = "";
+        	$search = $request->get('search');
+        	$searchedUsers = User::where('name', 'LIKE', "%$search%")->limit(5)->get();
 
-	        return view('search')
-	        	->with('user', $user)
-	        	->with('searchedUsers', $searchedUsers);
+        	if(count($searchedUsers) > 0)
+        	{
+        		foreach ($searchedUsers as $key => $searchedUser)
+	        	{
+	        		$output .= '<a href="../profile/'.$searchedUser->id.'" class="collection-item">
+									<div class="row">
+										<div class="col s2 m1 center-align">
+											<img src="/uploads/profilepic/'.$searchedUser->profilepic.'" class="circle">
+										</div>
+										<div class="col s10 m11 profileBar">
+											<span class="profileLink">'.$searchedUser->name.'</span>
+										</div>
+									</div>
+								</a>';
+	        	}
+	        
+	        	return response($output);
+        	}
+
+        	$output .= '<li class="collection-item noUsersDropdown">
+        					<div class="center-align">
+        						<h5 class="black-text">No users found!</h5>
+        					</div>	
+        				</li>';
+
+        	return response($output);
     	}
-
-        $search = $request->get('search');
-        $searchedUsers = User::where('name', 'LIKE', "%$search%")->limit(10)->get();
-
-        return view('search')->with('searchedUsers', $searchedUsers);
-    }   
-
+    }
 }

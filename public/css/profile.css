@@ -132,6 +132,25 @@ a
 	border-radius: 50%;
 }
 
+.settings
+{
+	cursor: pointer;
+}
+
+.totalComments
+{
+	padding-bottom: 5px;
+}
+
+.totalComments, .timestamp
+{
+	color: #78909c;
+}
+
+.timestamp
+{
+	font-size: 12px;
+}
 
 
 @media only screen and (max-width: 500px)
