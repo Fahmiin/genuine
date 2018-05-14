@@ -1,6 +1,12 @@
 strong
 {
 	color: #f57c00;
+	font-size: 15px;
+}
+
+.spacingTop
+{
+	padding-top: 10px;
 }
 
 .profileLinkMain
@@ -14,7 +20,7 @@ strong
 	height: 300px;
 }
 
-.profileImage
+.profileImage, .profileImageComment
 {
 	width: 50px;
 	height: 50px;
@@ -41,7 +47,39 @@ strong
 	font-size: 12px;
 }
 
+
 footer
 {
 	height: 70px;
+}
+
+@media only screen and (max-width: 500px)
+{
+	.profileImageComment
+	{
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+
+	.paddingOff
+	{
+		padding: 0 !important;
+	}
+
+	.marginOff
+	{
+		margin: 0 !important;
+	}
+
+	.spacingTop
+	{
+		padding-top: 5px !important;
+	}
+
+	.paddingComment
+	{
+		padding-top: 5px !important;
+		padding-left: 8px !important;
+	}
 }

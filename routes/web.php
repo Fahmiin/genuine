@@ -34,3 +34,6 @@ Route::delete('/profile/post/{id}', 'ProfileController@deletePost')->name('delet
 
 Route::get('/search', 'MainController@showPosts')->name('showPosts');
 Route::get('/search/users', 'SearchController@liveSearch')->name('liveSearch');
+
+Route::post('/comment/{id}', 'MainController@createComment')->name('createComment');
+Route::delete('/comment/{id}', 'MainController@deleteComment')->name('deleteComment');

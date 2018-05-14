@@ -54,7 +54,7 @@
                         <div class="input-field">
                             <input type="password" name="password" placeholder="Password">
                         </div>
-                        <div class="input-field">
+                        <div class="input-field center-align">
                             <button type="submit" class="btn orange darken-2">Login</button>
                         </div>
                     </form>
@@ -83,7 +83,7 @@
                         <div class="input-field">
                             <input type="password" name="password_confirmation" placeholder="Confirm password" required>
                         </div>
-                        <div class="input-field">
+                        <div class="input-field center-align">
                             <button type="submit" class="btn orange darken-2">Signup</button>
                         </div>
                     </form>

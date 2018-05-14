@@ -15,6 +15,11 @@
 	padding: 10px;
 }
 
+.spacingBottom
+{
+	padding-bottom: 10px;
+}
+
 .profilePic
 {
 	width: 150px;
@@ -163,6 +168,27 @@ a
 
 	.postsPic
 	{
-		height: 275px;
+		height: 260px;
+	}
+
+	.contactDetails
+	{
+		padding-top: 33px;
+		font-size: 15px;
+	}
+
+	.contactBM
+	{
+		margin-right: 0px !important;
+	}
+
+	.postEnlarge
+	{
+		padding: 0 !important;
+	}
+
+	.marginTopOff
+	{
+		margin-top: 0 !important;
 	}
 }

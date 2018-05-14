@@ -106,4 +106,12 @@ strong
 		cursor: pointer;
 		margin-top: 9px;
 	}
+
+	#postPic
+	{
+		width: 250px;
+		height: 150px;
+		object-fit: cover;
+		margin-bottom: 10px;
+	}
 }

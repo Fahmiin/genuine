@@ -48,17 +48,29 @@
 								<li class="collection-item avatar">
 									<i class="material-icons circle orange darken-2 contact">phone_android</i>
 									<h6 class="contactDetails">{{$userP->mobile}}</h6>
-									<a href="#!" class="secondary-content contactBM"><i class="material-icons">bookmark_border</i></a>
+									@auth
+										@if($user->id != $userP->id)
+										<a href="#!" class="secondary-content contactBM"><i class="material-icons">bookmark_border</i></a>
+										@endif
+									@endauth
 								</li>
 								<li class="collection-item avatar">
 									<i class="material-icons circle orange darken-2 contact">web</i>
 									<h6 class="contactDetails">{{$userP->website}}</h6>
-									<a href="#!" class="secondary-content contactBM"><i class="material-icons">bookmark_border</i></a>
+									@auth
+										@if($user->id != $userP->id)
+										<a href="#!" class="secondary-content contactBM"><i class="material-icons">bookmark_border</i></a>
+										@endif
+									@endauth
 								</li>
 								<li class="collection-item avatar">
 									<i class="material-icons circle orange darken-2 contact">email</i>
 									<h6 class="contactDetails">{{$userP->contact_email}}</h6>
-									<a href="#!" class="secondary-content contactBM"><i class="material-icons">bookmark_border</i></a>
+									@auth
+										@if($user->id != $userP->id)
+										<a href="#!" class="secondary-content contactBM"><i class="material-icons">bookmark_border</i></a>
+										@endif
+									@endauth
 								</li>
 							</ul>
 						</div>
@@ -310,16 +322,16 @@
 
 	@foreach($posts as $post)
 	<div class="modal maxWrap" id="postModal{{$post->id}}">
-		<div class="modal-content">
+		<div class="modal-content postEnlarge">
 			@if(empty($post))
 			@else
 				<div class="row">
-					<div class="card col s12 m5 paddingOff">
+					<div class="card col s12 m5 paddingOff marginTopOff">
 		                <div class="card-image">
 		                    <img src="/uploads/postPic/{{$post->postPic}}" class="postsPic">
 		                </div>
 		                <div class="card-content">
-		                    <div class="row">
+		                    <div class="row spacingBottom">
 		                        <div class="col s3">
 		                            <img src="/uploads/profilepic/{{$userP->profilepic}}" class="profileImage">
 		                        </div>
@@ -333,14 +345,8 @@
 		                        </div>
 		                    </div>
 		                    <div class="textarea">
-		                        <p>Liked by <strong>Mat</strong>, <strong>Quddus</strong> and <strong>26 others</strong></p>
 		                        <br>
 		                        <p><strong>{{$userP->name}}</strong> {{$post->postDescription}}</p>
-		                        <br>
-		                        <p class="totalComments">36 comments in total</p>
-		                    </div>
-		                    <div class="timestamp">
-		                        <p>30 mins ago</p>
 		                    </div>
 		                </div>
 		                <div class="card-action">
