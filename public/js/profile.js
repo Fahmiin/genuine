@@ -1,3 +1,23 @@
+const elem = document.querySelector('.collapsible');
+M.Collapsible.init(elem, 
+{
+	accordion: false
+});
+
+const openFileProfile = function(event)
+{
+	const input = event.target;
+
+	const reader = new FileReader();
+	reader.onload = () =>
+	{
+		const dataURL = reader.result;
+		const output = document.getElementById('profilePic');
+		output.src = dataURL;
+	};
+	reader.readAsDataURL(input.files[0]);
+};
+
 $(document).ready(() =>
 {	
 	$('#seeMoreProfile').on('click', () =>
@@ -39,10 +59,4 @@ $(document).ready(() =>
 			$('.productsBody').addClass('hide-on-med-and-down');
 		}
 	});
-});
-
-const elem = document.querySelector('.collapsible');
-M.Collapsible.init(elem, 
-{
-	accordion: false
 });

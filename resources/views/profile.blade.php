@@ -11,7 +11,7 @@
 				<div class="card">
 					<div class="center-align">
 						<h4 class="spacing">Hi, I'm {{$userP->name}}</h4>
-						<img src="/uploads/profilepic/{{$userP->profilepic}}" class="profilePic responsive-img">
+						<img src="/uploads/profilepic/{{$userP->profilepic}}" class="profilePic" id="profilePic">
 						@auth
 							@if($user->id == $userP->id)
 							<form action="{{route('profilePic', ['id' => $userP->id])}}" enctype="multipart/form-data" method="POST" >
@@ -19,7 +19,7 @@
 								<label for="fileUpload">
 									<i class="btn-floating btn-small waves-effect waves-light orange darken-2"><i class="material-icons">create</i></i>
 								</label>
-								<input type="file" name="profilepic" id="fileUpload" >
+								<input type="file" name="profilepic" onchange="openFileProfile(event)" class="hidden" id="fileUpload">
 								<button class="btn-floating btn-small waves-effect waves-light orange darken-2" type="submit"><i class="material-icons">save</i></button>
 							</form>
 							@endif
@@ -347,6 +347,8 @@
 		                    <div class="textarea">
 		                        <br>
 		                        <p><strong>{{$userP->name}}</strong> {{$post->postDescription}}</p>
+		                        <br>
+		                        <p class="postTimestamp">posted {{$post->created_at->diffForHumans()}}</p>
 		                    </div>
 		                </div>
 		                <div class="card-action">

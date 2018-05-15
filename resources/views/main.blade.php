@@ -30,6 +30,8 @@
                     <div class="textarea">
                         <br>
                         <p><strong>{{$post->user->name}}</strong> {{$post->postDescription}}</p>
+                        <br>
+                        <p class="postTimestamp">posted {{$post->created_at->diffForHumans()}}</p>
                     </div>
                 </div>
                 <div class="card-action">

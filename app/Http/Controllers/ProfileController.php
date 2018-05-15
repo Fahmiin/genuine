@@ -70,6 +70,15 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request, $id)
     {
+        $this->validate(request(),
+        [
+            'name' => 'required|max:10',
+            'tagline' => 'required',
+            'mobile' => 'required|integer|max:11',
+            'website' => 'required|max:20',
+            'contact_email' => 'required|email|max:20'
+        ]);
+
         $user = Auth::user();
         $user->name = $request->input('name');
         $user->tagline = $request->input('tagline');
@@ -114,6 +123,13 @@ class ProfileController extends Controller
     //PRODUCTS CONTROLLER
     public function createProduct(Request $request)
     {
+        $this->validate(request(),
+        [
+            'productTitle' => 'required|max:30',
+            'productDescription' => 'required',
+            'productPricing' => 'required|max:30'
+        ]);
+
         $product = new Product;
         $product->productTitle = $request->input('productTitle');
         $product->productDescription = $request->input('productDescription');

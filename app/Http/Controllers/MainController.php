@@ -38,13 +38,18 @@ class MainController extends Controller
 	//COMMENT Controller
     public function createComment(Request $request, $id)
     {
+    	$this->validate(request(),
+		[
+			'comment' => 'required'
+		]);
+
     	$comment = new Comment;
     	$post = Post::find($id);
     	$user = Auth::user();
     	$comment->comment = $request->input('comment');
+    	$comment->user_id = $user->id;
     	$post->comments()->save($comment);
-    	$user->comments()->save($comment);
-
+    	
     	return redirect()->route('showPosts');
     }
 

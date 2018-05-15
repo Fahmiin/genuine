@@ -11,23 +11,13 @@
 
         @yield('profileCSS')
 
-        @yield('searchCSS')
-
         <title>Genuine</title>
     </head>
     <body>
         
         @include('nav')
 
-        @if(count($errors) > 0)
-            @foreach($errors->all() as $error)
-                <div class="container">
-                    <div class="card-panel red lighten-1 white-text">
-                        {{$error}}
-                    </div>
-                </div>
-            @endforeach
-        @endif
+        @include('error_flash')
 
         @yield('content')
         
@@ -45,6 +35,4 @@
 
     @yield('profileJS')
 
-    @yield('searchJS')
-    
 </html>

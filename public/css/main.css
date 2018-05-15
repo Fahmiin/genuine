@@ -4,6 +4,11 @@ strong
 	font-size: 15px;
 }
 
+.dropdown-content strong
+{
+	font-size: 12px;
+}
+
 .spacingTop
 {
 	padding-top: 10px;
@@ -32,26 +37,18 @@ strong
 	cursor: pointer;
 }
 
-.totalComments
+.postTimestamp
 {
-	padding-bottom: 5px;
+	color: #b0bec5;
+	font-size: 13px;
 }
-
-.totalComments, .timestamp
-{
-	color: #78909c;
-}
-
-.timestamp
-{
-	font-size: 12px;
-}
-
 
 footer
 {
 	height: 70px;
 }
+
+
 
 @media only screen and (max-width: 500px)
 {

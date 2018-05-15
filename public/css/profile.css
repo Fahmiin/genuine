@@ -142,19 +142,10 @@ a
 	cursor: pointer;
 }
 
-.totalComments
+.postTimestamp
 {
-	padding-bottom: 5px;
-}
-
-.totalComments, .timestamp
-{
-	color: #78909c;
-}
-
-.timestamp
-{
-	font-size: 12px;
+	color: #b0bec5;
+	font-size: 13px;
 }
 
 
