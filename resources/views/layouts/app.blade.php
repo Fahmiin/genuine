@@ -35,4 +35,6 @@
 
     @yield('profileJS')
 
+    @include('success_toast')
+
 </html>

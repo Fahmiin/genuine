@@ -69,7 +69,7 @@ class ProfileController extends Controller
             $user->profilepic = $filename;
             $user->save();
 
-            return redirect()->route('profilePage');
+            return back()->with('session_code', 'updateSuccess');
         } 
     }
 
@@ -79,7 +79,7 @@ class ProfileController extends Controller
         [
             'name' => 'required|max:10',
             'tagline' => 'required',
-            'mobile' => 'required|integer|max:11',
+            'mobile' => 'required|max:11',
             'website' => 'required|max:20',
             'contact_email' => 'required|email|max:20'
         ]);
@@ -92,7 +92,7 @@ class ProfileController extends Controller
         $user->contact_email = $request->input('contact_email');
         $user->save();
 
-        return redirect()->route('profilePage');
+        return back()->with('session_code', 'updateSuccess');
     }
 
 
@@ -103,7 +103,7 @@ class ProfileController extends Controller
         $detail->about = $request->input('about');
         $request->user()->detail()->save($detail);
 
-        return redirect()->route('profilePage');
+        return redirect()->back()->with('session_code', 'updateSuccess');
     }
 
     public function updateEducation(Request $request, $id)
@@ -112,7 +112,7 @@ class ProfileController extends Controller
         $detail->education = $request->input('education');
         $request->user()->detail()->save($detail);
 
-        return redirect()->route('profilePage');
+        return back()->with('session_code', 'updateSuccess');
     }
 
     public function updateWork(Request $request, $id)
@@ -121,7 +121,7 @@ class ProfileController extends Controller
         $detail->work = $request->input('work');
         $request->user()->detail()->save($detail);
 
-        return redirect()->route('profilePage');
+        return back()->with('session_code', 'updateSuccess');
     }
 
 
@@ -141,7 +141,7 @@ class ProfileController extends Controller
         $product->productPricing = $request->input('productPricing');
         $request->user()->products()->save($product);
 
-        return redirect()->route('profilePage');
+        return back()->with('session_code', 'updateSuccess');
     }
 
     public function deleteProduct($id)
@@ -149,6 +149,6 @@ class ProfileController extends Controller
         $product = Product::find($id);
         $product->delete();
 
-        return redirect()->route('profilePage');
+        return back()->with('session_code', 'updateSuccess');
     }
 }

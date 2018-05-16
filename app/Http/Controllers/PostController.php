@@ -22,7 +22,7 @@ class PostController extends Controller
         $post->postDescription = $request->input('postDescription');
         $request->user()->posts()->save($post);
 
-        return redirect()->back();
+        return back()->with('session_code', 'postSuccess');
     }
 
     public function deletePost($id)
@@ -32,6 +32,6 @@ class PostController extends Controller
         $post->delete();
         $comments->delete();
 
-        return redirect()->back();
+        return back()->with('session_code', 'deleteSuccess');
     }
 }

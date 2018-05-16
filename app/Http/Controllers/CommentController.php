@@ -24,7 +24,7 @@ class CommentController extends Controller
     	$comment->user_id = $user->id;
     	$post->comments()->save($comment);
     	
-    	return redirect()->back();
+    	return back()->with('session_code', 'postCommentSuccess');
     }
 
     public function deleteComment($id)
@@ -32,6 +32,6 @@ class CommentController extends Controller
     	$comment = Comment::find($id);
     	$comment->delete();
 
-    	return redirect()->back();
+    	return back()->with('session_code', 'deleteCommentSuccess');
     }
 }

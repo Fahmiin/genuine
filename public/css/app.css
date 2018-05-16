@@ -8,6 +8,14 @@ body
 	border-radius: 10px;
 }
 
+#toast-container
+{
+	top: auto !important;
+	right: auto !important;
+	bottom: 10%;
+	left:7%;
+}
+
 .containerMedium
 {
 	width: 80%;
