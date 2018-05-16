@@ -14,6 +14,11 @@ body
 	margin: auto;
 }
 
+.spacingTop
+{
+	padding-top: 10px;
+}
+
 .welcome
 {
     margin-top: 20px;
@@ -41,6 +46,11 @@ strong
 	height: 300px;
 	object-fit: cover;
 	margin-bottom: 10px;
+}
+
+.postsPic
+{
+	height: 350px;
 }
 
 .hidden
@@ -99,6 +109,29 @@ strong
 	width: 382.17px;
 }
 
+.profileImageComment
+{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.postTimestamp
+{
+	color: #b0bec5;
+	font-size: 13px;
+}
+
+.settings
+{
+	cursor: pointer;
+}
+
+footer
+{
+	height: 70px;
+}
+
 
 @media only screen and (max-width: 500px)
 {
@@ -117,5 +150,16 @@ strong
 		height: 150px;
 		object-fit: cover;
 		margin-bottom: 10px;
+	}
+
+	.paddingOff
+	{
+		padding: 0 !important;
+	}
+
+	.paddingComment
+	{
+		padding-top: 5px !important;
+		padding-left: 8px !important;
 	}
 }

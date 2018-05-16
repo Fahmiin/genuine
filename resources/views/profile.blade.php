@@ -240,7 +240,7 @@
 												<form action="{{route('deleteProduct', ['id' => $product->id])}}" method="POST">
 													@csrf
 													@method('DELETE')
-													<button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">close</i></button>
+													<button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
 												</form>
 												@endif
 											@endauth	
@@ -366,8 +366,54 @@
 			                @endauth    
 		                </div>
 		            </div>
-		            <div class="col s12 m7">
-		            	<h4 class="center">Comments Here</h4>
+		            <div class="col m1"></div>
+		            <div class="col s12 m6">
+		            	@auth
+	                    <form action="{{route('createComment', ['id' => $post->id])}}" method="POST">
+	                        @csrf
+	                         <div class="input-field">
+	                            <textarea class="materialize-textarea" name="comment" required></textarea>
+	                            <label for="comment">Tell {{$post->user->name}} what you think</label>
+	                        </div>
+	                        <div class="input-field center-align">
+	                            <button type="submit" class="btn orange darken-2">Submit</button>
+	                        </div>
+	                    </form>
+	                    @else
+	                    <h5 class="center-align">Please log in to comment</h5>
+	                    @endauth
+	                    <div>
+	                        <h5>Comments</h5>
+	                    </div>
+	                    @foreach($comments as $comment)
+	                        @if($comment->post_id == $post->id)
+	                        <ul class="collection">
+	                            <li class="collection-item">
+	                                <div class="row">
+	                                    <div class="col s2 m1 paddingOff">
+	                                        <img src="/uploads/profilepic/{{$comment->user->profilepic}}" class="profileImageComment">
+	                                    </div>
+	                                    <div class="col s8 m10 paddingOff">
+	                                        <p class="marginOff paddingComment paddingLeft"><strong>{{$comment->user->name}}:</strong> {{$comment->comment}}</p>
+	                                    </div>
+	                                    <div class="col s2 m1 paddingOff">
+	                                        @auth
+	                                            @if($comment->user->id == $user->id)
+	                                            <form action="{{route('deleteComment', ['id' => $comment->id])}}" method="POST">
+	                                                @csrf
+	                                                @method('DELETE')
+	                                                <div class="spacingTop">
+	                                                    <button type="submit" class="btn-floating btn-small left orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
+	                                                </div>
+	                                            </form>
+	                                            @endif 
+	                                        @endauth
+	                                    </div>
+	                                </div>
+	                            </li>
+	                        </ul>
+	                        @endif
+	                    @endforeach
 		            </div>
 		        </div>
             @endif

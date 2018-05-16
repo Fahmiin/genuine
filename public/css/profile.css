@@ -20,6 +20,11 @@
 	padding-bottom: 10px;
 }
 
+.paddingLeft
+{
+	padding-left: 20px;
+}
+
 .profilePic
 {
 	width: 150px;
@@ -125,11 +130,6 @@ a
 	padding: 0 !important;
 }
 
-.postsPic
-{
-	height: 350px;
-}
-
 .profileImage
 {
 	width: 50px;
@@ -137,16 +137,6 @@ a
 	border-radius: 50%;
 }
 
-.settings
-{
-	cursor: pointer;
-}
-
-.postTimestamp
-{
-	color: #b0bec5;
-	font-size: 13px;
-}
 
 
 @media only screen and (max-width: 500px)

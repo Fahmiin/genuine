@@ -7,6 +7,7 @@ use App\User;
 use App\Detail;
 use App\Product;
 use App\Post;
+use App\Comment;
 use Auth;
 use Image;
 
@@ -22,13 +23,15 @@ class ProfileController extends Controller
             $detail = Detail::all();
             $products = Product::where("user_id", $userP->id)->get();
             $posts = Post::where("user_id", $userP->id)->get();
+            $comments = Comment::all();
 
             return view('profile')
                 ->with('user', $user)
                 ->with('userP',$userP)
                 ->with('detail', $detail)
                 ->with('products', $products)
-                ->with('posts', $posts);
+                ->with('posts', $posts)
+                ->with('comments', $comments);
         }
     }
 
@@ -41,13 +44,15 @@ class ProfileController extends Controller
         $detail = Detail::find($id);
         $products = Product::where("user_id", $userP->id)->get();
         $posts = Post::where("user_id", $userP->id)->get();
+        $comments = Comment::all();
 
         return view('profile')
             ->with('user', $user)
             ->with('userP', $userP)
             ->with('detail', $detail)
             ->with('products', $products)
-            ->with('posts', $posts);
+            ->with('posts', $posts)
+            ->with('comments', $comments);
     }
 
 
@@ -143,30 +148,6 @@ class ProfileController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-
-        return redirect()->route('profilePage');
-    }
-
-
-    //POSTS CONTROLLER
-    public function createPost(Request $request)
-    {
-        $postPic = $request->file('postPic');
-        $filename = time().'.'.$postPic->getClientOriginalExtension();
-        Image::make($postPic)->resize(375, 300)->save(public_path('/uploads/postPic/'.$filename));
-
-        $post = new Post;
-        $post->postPic = $filename;
-        $post->postDescription = $request->input('postDescription');
-        $request->user()->posts()->save($post);
-
-        return redirect()->route('profilePage');
-    }
-
-    public function deletePost($id)
-    {
-        $post = Post::find($id);
-        $post->delete();
 
         return redirect()->route('profilePage');
     }

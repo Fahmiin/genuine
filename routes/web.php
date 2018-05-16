@@ -29,11 +29,11 @@ Route::post('/profile/details/work/{id}', 'ProfileController@updateWork')->name(
 Route::post('/profile/products', 'ProfileController@createProduct')->name('createProduct');
 Route::delete('/profile/product/{id}', 'ProfileController@deleteProduct')->name('deleteProduct');
 
-Route::post('/profile/post', 'ProfileController@createPost')->name('createPost');
-Route::delete('/profile/post/{id}', 'ProfileController@deletePost')->name('deletePost');
+Route::post('/post', 'PostController@createPost')->name('createPost');
+Route::delete('/post/{id}', 'PostController@deletePost')->name('deletePost');
 
 Route::get('/search', 'MainController@showPosts')->name('showPosts');
 Route::get('/search/users', 'SearchController@liveSearch')->name('liveSearch');
 
-Route::post('/comment/{id}', 'MainController@createComment')->name('createComment');
-Route::delete('/comment/{id}', 'MainController@deleteComment')->name('deleteComment');
+Route::post('/comment/{id}', 'CommentController@createComment')->name('createComment');
+Route::delete('/comment/{id}', 'CommentController@deleteComment')->name('deleteComment');

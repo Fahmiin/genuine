@@ -53,6 +53,9 @@
                             <button type="submit" class="btn orange darken-2">Submit</button>
                         </div>
                     </form>
+                    @else
+                    <h5 class="center-align">Please log in to comment</h5>
+                    @endauth
                     <div>
                         <h5>Comments</h5>
                     </div>
@@ -74,7 +77,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="spacingTop">
-                                                    <button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">close</i></button>
+                                                    <button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
                                                 </div>
                                             </form>
                                             @endif 
@@ -85,9 +88,6 @@
                         </ul>
                         @endif
                     @endforeach
-                    @else
-                    <h5 class="center-align">Please log in to comment</h5>
-                    @endauth
                 </div>
             </div>
         </div>
