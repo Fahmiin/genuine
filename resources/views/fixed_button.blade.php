@@ -6,6 +6,7 @@
         <li><a href="#newPostModal" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="New post"><i class="large material-icons">edit</i></a></li>
         <li><a href="#searchModal" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger hide-on-large-only" data-position="left" data-tooltip="Search"><i class="large material-icons">search</i></a></li>
         <li><a href="#" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="Notifications"><i class="large material-icons">notifications</i></a></li>
+        <li><a href="/tags" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="Tags page"><i class="large material-icons">local_offer</i></a></li>
     </ul>
     @else
     <a class="btn-floating orange darken-4 btn-large modal-trigger hide-on-large-only" href="#searchModal"><i class="large material-icons">search</i></a>
@@ -22,12 +23,20 @@
             	</div>
             	<div class="center">
 	            	<label for="postUpload" class="btn orange darken-2"><i class="material-icons left">file_upload</i>Upload</label>
-	            	<input type="file" name="postPic" onchange="openFile(event)" class="hidden" id="postUpload">
+	            	<input type="file" name="postPic" onchange="openFile(event)" class="hidden" id="postUpload" required>
 	            </div>
             </div>
             <div class="input-field">
-                <textarea class="materialize-textarea" name="postDescription"></textarea>
+                <textarea class="materialize-textarea" name="postDescription" required></textarea>
 				<label for="postDescription">Description</label>
+            </div>
+            <div class="input-field-tags">
+                <label for="tags[]">Enter Tags</label>
+                <select class="select2" name="tags[]" multiple="multiple" required>
+                    @foreach(\App\Tag::all() as $tag)
+                        <option value="{{$tag->id}}">{{$tag->tag}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="input-field center-align">
                 <button type="submit" class="btn orange darken-2">Share</button>

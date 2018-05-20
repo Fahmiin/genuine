@@ -27,3 +27,9 @@
         M.toast({html: 'Profile updated!'})
     </script>
 @endif
+
+@if(!empty(Session::get('session_code')) && Session::get('session_code') == 'tagCreateSuccess')
+    <script>
+        M.toast({html: 'New tag created!'})
+    </script>
+@endif

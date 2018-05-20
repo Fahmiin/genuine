@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('profileCSS')
+@section('CSS')
 	<link rel="stylesheet" type="text/css" href="{{asset('css/profile.css')}}">
 @endsection
 
@@ -230,7 +230,7 @@
 						<div class="collapsible-header productsHeader"><i class="material-icons">shopping_cart</i>My products</div>
 						<div class="hide-on-med-and-down productsBody">
 							<div class="body">
-								@foreach($products as $product)
+								@foreach($userP->products as $product)
 								<div class="col s12 m6">
 									<div class="card blue-grey darken-1">
 										<div class="card-content white-text">
@@ -276,10 +276,10 @@
 				<ul class="collapsible">
 					<li>
 						<div class="collapsible-header"><i class="material-icons">content_paste</i>Recent Posts</div>
-						@if(empty($posts))
+						@if(empty($userP->posts))
 						@else
 						<div class="postsCollectionBody">
-							@foreach($posts as $post)
+							@foreach($userP->posts as $post)
 							<div class="postsCollection">
 								<img class="postsCollectionImage modal-trigger" href="#postModal{{$post->id}}" src="/uploads/postPic/{{$post->postPic}}">
 							</div>
@@ -320,7 +320,7 @@
 		</div>
 	</div>
 
-	@foreach($posts as $post)
+	@foreach($userP->posts as $post)
 	<div class="modal maxWrap" id="postModal{{$post->id}}">
 		<div class="modal-content postEnlarge">
 			@if(empty($post))
@@ -348,7 +348,15 @@
 		                        <br>
 		                        <p><strong>{{$userP->name}}</strong> {{$post->postDescription}}</p>
 		                        <br>
+				                <span>@foreach($post->tags as $tag)
+		                            <div class="chip">
+		                                <a href="/tag/{{$tag->id}}" id="searchTagID"">{{$tag->tag}}</a>
+		                            </div>
+		                        @endforeach</span>
+		                        <br>
 		                        <p class="postTimestamp">posted {{$post->created_at->diffForHumans()}}</p>
+		                        <br>
+		                        <p class="postTimestamp">{{$post->comments->count()}} total comments</p>
 		                    </div>
 		                </div>
 		                <div class="card-action">
@@ -385,34 +393,32 @@
 	                    <div>
 	                        <h5>Comments</h5>
 	                    </div>
-	                    @foreach($comments as $comment)
-	                        @if($comment->post_id == $post->id)
-	                        <ul class="collection">
-	                            <li class="collection-item">
-	                                <div class="row">
-	                                    <div class="col s2 m1 paddingOff">
-	                                        <img src="/uploads/profilepic/{{$comment->user->profilepic}}" class="profileImageComment">
-	                                    </div>
-	                                    <div class="col s8 m10 paddingOff">
-	                                        <p class="marginOff paddingComment paddingLeft"><strong>{{$comment->user->name}}:</strong> {{$comment->comment}}</p>
-	                                    </div>
-	                                    <div class="col s2 m1 paddingOff">
-	                                        @auth
-	                                            @if($comment->user->id == $user->id)
-	                                            <form action="{{route('deleteComment', ['id' => $comment->id])}}" method="POST">
-	                                                @csrf
-	                                                @method('DELETE')
-	                                                <div class="spacingTop">
-	                                                    <button type="submit" class="btn-floating btn-small left orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
-	                                                </div>
-	                                            </form>
-	                                            @endif 
-	                                        @endauth
-	                                    </div>
-	                                </div>
-	                            </li>
-	                        </ul>
-	                        @endif
+	                    @foreach($post->comments as $comment)
+                        <ul class="collection">
+                            <li class="collection-item">
+                                <div class="row">
+                                    <div class="col s2 m1 paddingOff">
+                                        <img src="/uploads/profilepic/{{$comment->user->profilepic}}" class="profileImageComment">
+                                    </div>
+                                    <div class="col s8 m10 paddingOff">
+                                        <p class="marginOff paddingComment paddingLeft"><strong>{{$comment->user->name}}:</strong> {{$comment->comment}}</p>
+                                    </div>
+                                    <div class="col s2 m1 paddingOff">
+                                        @auth
+                                            @if($comment->user->id == $user->id)
+                                            <form action="{{route('deleteComment', ['id' => $comment->id])}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="spacingTop">
+                                                    <button type="submit" class="btn-floating btn-small left orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
+                                                </div>
+                                            </form>
+                                            @endif 
+                                        @endauth
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
 	                    @endforeach
 		            </div>
 		        </div>
@@ -422,6 +428,6 @@
 	@endforeach
 @endsection
 
-@section('profileJS')
+@section('JS')
 	 <script src="{{asset('js/profile.js')}}"></script>
 @endsection

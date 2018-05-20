@@ -37,3 +37,8 @@ Route::get('/search/users', 'SearchController@liveSearch')->name('liveSearch');
 
 Route::post('/comment/{id}', 'CommentController@createComment')->name('createComment');
 Route::delete('/comment/{id}', 'CommentController@deleteComment')->name('deleteComment');
+
+Route::get('/tags', 'TagController@showTags')->name('showTags');
+Route::get('/search/tags', 'TagController@searchTags')->name('searchTags');
+Route::get('/tag/{id}', 'TagController@showTag')->name('showTag');
+Route::post('/tags/create', 'TagController@createTag')->name('createTag');

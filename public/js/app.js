@@ -26,6 +26,9 @@ const openFile = function(event)
 
 $(document).ready(() =>
 {
+	//SELECT2 INIT
+	$('.select2').select2();
+
 	$('#search, #search2').on('keyup', () =>
 	{
 		let value = $('#search').val();

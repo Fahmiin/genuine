@@ -20,18 +20,10 @@ class ProfileController extends Controller
         if (Auth::check())
         {
             $user = $userP = Auth::user();
-            $detail = Detail::all();
-            $products = Product::where("user_id", $userP->id)->get();
-            $posts = Post::where("user_id", $userP->id)->get();
-            $comments = Comment::all();
 
             return view('profile')
                 ->with('user', $user)
-                ->with('userP',$userP)
-                ->with('detail', $detail)
-                ->with('products', $products)
-                ->with('posts', $posts)
-                ->with('comments', $comments);
+                ->with('userP',$userP);
         }
     }
 
@@ -41,18 +33,10 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $userP = User::find($id);
-        $detail = Detail::find($id);
-        $products = Product::where("user_id", $userP->id)->get();
-        $posts = Post::where("user_id", $userP->id)->get();
-        $comments = Comment::all();
 
         return view('profile')
             ->with('user', $user)
-            ->with('userP', $userP)
-            ->with('detail', $detail)
-            ->with('products', $products)
-            ->with('posts', $posts)
-            ->with('comments', $comments);
+            ->with('userP', $userP);
     }
 
 

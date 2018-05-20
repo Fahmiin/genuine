@@ -135,6 +135,11 @@ strong
 	cursor: pointer;
 }
 
+.select2
+{
+	width: 100% !important;
+}
+
 footer
 {
 	height: 70px;

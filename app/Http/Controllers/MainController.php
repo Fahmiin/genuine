@@ -16,21 +16,17 @@ class MainController extends Controller
 		{
 			$user = Auth::user();
 			$posts = Post::all();
-			$comments = Comment::all();
 
 			return view('main')
 				->with('user', $user)
-				->with('posts', $posts)
-				->with('comments', $comments);
+				->with('posts', $posts);
 		}
 		
 		$user = User::all();
 		$posts = Post::all();
-		$comments = Comment::all();
 		
 		return view('main')
 			->with('user', $user)
-			->with('posts', $posts)
-			->with('comments', $comments);
+			->with('posts', $posts);
 	}
 }

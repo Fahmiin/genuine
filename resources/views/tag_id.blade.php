@@ -5,8 +5,12 @@
 @endsection
 
 @section('content')
+	<div class="center-align">
+		<h5>Posts related to {{$tag->tag}}</h5>
+		<hr>
+	</div>
     <div class="row">
-        @foreach($posts as $post)
+        @foreach($tag->posts as $post)
         <div class="col s12 m4">
             <div class="card">
                 <div class="card-image">
@@ -67,31 +71,31 @@
                         <h5>Comments</h5>
                     </div>
                     @foreach($post->comments as $comment)
-                        <ul class="collection">
-                            <li class="collection-item">
-                                <div class="row">
-                                    <div class="col s2 m1 paddingOff">
-                                        <img src="/uploads/profilepic/{{$comment->user->profilepic}}" class="profileImageComment">
-                                    </div>
-                                    <div class="col s8 m10 paddingOff">
-                                        <p class="marginOff paddingComment"><strong>{{$comment->user->name}}:</strong> {{$comment->comment}}</p>
-                                    </div>
-                                    <div class="col s2 m1 paddingOff">
-                                        @auth
-                                            @if($comment->user->id == $user->id)
-                                            <form action="{{route('deleteComment', ['id' => $comment->id])}}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <div class="spacingTop">
-                                                    <button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
-                                                </div>
-                                            </form>
-                                            @endif 
-                                        @endauth
-                                    </div>
+                    <ul class="collection">
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s2 m1 paddingOff">
+                                    <img src="/uploads/profilepic/{{$comment->user->profilepic}}" class="profileImageComment">
                                 </div>
-                            </li>
-                        </ul>
+                                <div class="col s8 m10 paddingOff">
+                                    <p class="marginOff paddingComment"><strong>{{$comment->user->name}}:</strong> {{$comment->comment}}</p>
+                                </div>
+                                <div class="col s2 m1 paddingOff">
+                                    @auth
+                                        @if($comment->user->id == $user->id)
+                                        <form action="{{route('deleteComment', ['id' => $comment->id])}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="spacingTop">
+                                                <button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
+                                            </div>
+                                        </form>
+                                        @endif 
+                                    @endauth
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                     @endforeach
                 </div>
             </div>
