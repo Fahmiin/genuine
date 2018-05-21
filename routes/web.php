@@ -46,3 +46,6 @@ Route::post('/tags/create', 'TagController@createTag')->name('createTag');
 
 Route::post('/review/{id}', 'ReviewController@createReview')->name('createReview');
 Route::delete('/review/delete/{id}', 'ReviewController@deleteReview')->name('deleteReview');
+
+Route::post('/reply/{id}', 'ReplyController@createReply')->name('createReply');
+Route::delete('/reply/delete/{id}', 'ReplyController@deleteReply')->name('deleteReply');

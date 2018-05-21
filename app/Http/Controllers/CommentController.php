@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Comment;
+use App\Reply;
 use Auth;
 
 class CommentController extends Controller
@@ -30,6 +31,13 @@ class CommentController extends Controller
     public function deleteComment($id)
     {
     	$comment = Comment::find($id);
+        $replies = Reply::where('comment_id', $id)->get();
+        
+        foreach($replies as $reply)
+        {
+            $reply->delete();
+        }
+
     	$comment->delete();
 
     	return back()->with('session_code', 'deleteCommentSuccess');

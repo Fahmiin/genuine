@@ -283,10 +283,10 @@
 										<div class="col s2 m1 center-align">
 											<img src="/uploads/profilepic/{{$review->user->profilepic}}" class="circle">
 										</div>
-										<div class="col s9 m10 spacingTop">
+										<div class="col s9 m10 spaceTop">
 											<span><strong>{{$review->user->name}}</strong>: <em>"{{$review->review}}"</em></span>
 										</div>
-										<div class="col s1 m1 right paddingTop">
+										<div class="col s1 m1 right spaceTop">
 											@auth
 												@if($review->user->id == $user->id)
 												<form action="{{route('deleteReview', ['id' => $review->id])}}" method="POST">
@@ -467,7 +467,7 @@
                                     </div>
                                     <div class="col s2 m1 paddingOff">
                                         @auth
-                                            @if($comment->user->id == $user->id)
+                                            @if($user->id == $comment->user->id)
                                             <form action="{{route('deleteComment', ['id' => $comment->id])}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -475,11 +475,64 @@
                                                     <button type="submit" class="btn-floating btn-small left orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
                                                 </div>
                                             </form>
+                                             @else
+                                            <a data-reply="#reply{{$comment->id}}" data-comment="#comment{{$comment->id}}" class="left paddingTop reply" id="reply{{$comment->id}}">Reply</a>  
                                             @endif 
                                         @endauth
                                     </div>
                                 </div>
+                                @auth
+                                    @if($user->id != $comment->user->id)
+                                    <div class="row hidden" id="comment{{$comment->id}}">
+                                        <form action="{{route('createReply', ['id' => $comment->id])}}" method="POST">
+                                            @csrf
+                                            <div class="col s11 m11">
+                                                <div class="input-field">
+                                                    <textarea class="materialize-textarea" name="reply" required></textarea>
+                                                    <label for="reply">You are replying to {{$comment->user->name}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="col s1 m1">
+                                                <div class="input-field center-align">
+                                                    <button class="btn-floating btn-small waves-effect waves-light orange darken-2" type="submit"><i class="material-icons">save</i></button>
+                                                </div>
+                                                <a data-reply="#reply{{$comment->id}}" data-comment="#comment{{$comment->id}}" class="cancelReply">Cancel</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    @endif
+                                @endauth
                             </li>
+                            @foreach($comment->replies as $reply)
+                            <div class="marginLeft replyBox">
+                                <li class="collection-item paddingOffSmall">
+                                    <div class="row">
+                                        <div class="col m1 hide-on-med-and-down">
+                                            <i class="small material-icons spacingTop">reply</i>
+                                        </div>
+                                        <div class="col s3 m1 paddingOffSmall spacingTop">
+                                            <img src="/uploads/profilepic/{{$reply->user->profilepic}}" class="profileImageComment">
+                                        </div>
+                                        <div class="col s7 m8 paddingOffSmall">
+                                            <p class="marginOff paddingComment paddingLeft"><strong>{{$reply->user->name}}:</strong> {{$reply->reply}}</p>
+                                        </div>
+                                        <div class="col s2 m2 paddingOffSmall">
+                                            @auth
+                                                @if($reply->user->id == $user->id)
+                                                <form action="{{route('deleteReply', ['id' => $reply->id])}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="spacingTop right">
+                                                        <button type="submit" class="btn-floating btn-small floatLeft orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
+                                                    </div>
+                                                </form>
+                                                @endif     
+                                            @endauth
+                                        </div>
+                                    </div>
+                                </li>
+                            </div>
+                            @endforeach
                         </ul>
 	                    @endforeach
 		            </div>
@@ -494,11 +547,6 @@
 			</div>
 			<div class="row">
 				<div class="col s6 m6 center-align">
-					<div class="input-field">
-						<a href="/profile" class="btn orange darken-2">Cancel</a>
-					</div>
-				</div>
-				<div class="col s6 m6 center-align">
 					<form action="{{route('deletePost', ['id' => $post->id])}}" method="POST">
 	                	@csrf
 	                	@method('DELETE')
@@ -506,6 +554,11 @@
 	                        <button type="submit" class="btn orange darken-2">Delete</button>
 	                    </div>
 	                </form>
+				</div>
+				<div class="col s6 m6 center-align">
+					<div class="input-field">
+						<a href="/profile" class="btn orange darken-2">Cancel</a>
+					</div>
 				</div>
 			</div>
 		</div>

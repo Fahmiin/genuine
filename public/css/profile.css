@@ -4,12 +4,6 @@
 	margin: auto;
 }
 
-.maxWrap
-{
-	width: 95%;
-	margin: auto;
-}
-
 .spacing
 {
 	padding: 10px;
@@ -18,11 +12,6 @@
 .spacingBottom
 {
 	padding-bottom: 10px;
-}
-
-.spacingTop
-{
-	padding-top: 12px !important;
 }
 
 .paddingLeft
@@ -35,14 +24,9 @@
 	padding-top: 6px !important;
 }
 
-.hidden
+.spaceTop
 {
-	display: none;
-}
-
-a
-{
-	cursor: pointer;
+	padding-top: 12px !important;
 }
 
 .body
@@ -161,6 +145,11 @@ a
 	border-radius: 50%;
 }
 
+.reply
+{
+	padding-top: 15px !important;
+}
+
 
 
 @media only screen and (max-width: 500px)
@@ -187,11 +176,6 @@ a
 		margin-right: 0px !important;
 	}
 
-	.postEnlarge
-	{
-		padding: 0 !important;
-	}
-
 	.marginTopOff
 	{
 		margin-top: 0 !important;
@@ -201,5 +185,20 @@ a
 	{
 		padding-left: 0;
 		padding-right: 0;
+	}
+
+	.paddingComment
+	{
+		padding-top: 0 !important;
+	}
+
+	.floatLeft
+	{
+		float: left;
+	}
+
+	.paddingOffSmall
+	{
+		padding: 0 !important;
 	}
 }

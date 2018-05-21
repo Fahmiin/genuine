@@ -7,6 +7,7 @@ use App\Post;
 use App\User;
 use App\Comment;
 use App\Tag;
+use App\Reply;
 use Auth;
 use Image;
 
@@ -47,10 +48,22 @@ class PostController extends Controller
     public function deletePost($id)
     {
         $post = Post::find($id);
-        $comments = Comment::where('post_id', $id);
+        $comments = Comment::where('post_id', $id)->get();
+        
+        foreach($comments as $comment)
+        {
+            $replies = Reply::where('comment_id', $comment->id)->get();
+
+            foreach($replies as $reply)
+            {
+                $reply->delete();
+            }
+
+            $comment->delete();
+        }
+
         $post->tags()->detach();
         $post->delete();
-        $comments->delete();
 
         return back()->with('session_code', 'deleteSuccess');
     }

@@ -3,6 +3,17 @@ body
 	background-color: #f0f0f0;
 }
 
+.maxWrap
+{
+	width: 95%;
+	margin: auto;
+}
+
+a
+{
+	cursor: pointer;
+}
+
 .errorFlash
 {
 	border-radius: 10px;
@@ -27,16 +38,44 @@ body
 	padding-top: 10px;
 }
 
-.welcome
+.paddingTop
 {
-    margin-top: 20px;
-    padding-right: 10px;
+	padding-top: 15px;
+}
+
+.marginLeft
+{
+	margin-left: 30px !important;
 }
 
 strong
 {
-	font-size: 12px;
 	color: #f57c00;
+	font-size: 15px;
+}
+
+.dropdown-content strong
+{
+	font-size: 12px;
+}
+
+.hidden
+{
+	display: none;
+}
+
+.row
+{
+	margin-bottom: 0 !important;
+}
+
+
+
+
+.welcome
+{
+    margin-top: 20px;
+    padding-right: 10px;
 }
 
 .profilePicNav
@@ -61,11 +100,6 @@ strong
 	height: 330px;
 }
 
-.hidden
-{
-	display: none;
-}
-
 .searchNav
 {
 	margin-top: 12px !important;
@@ -87,11 +121,6 @@ strong
 .searchButtonModal
 {
 	margin-top: 10px !important;
-}
-
-.row
-{
-	margin-bottom: 0 !important;
 }
 
 .circle
@@ -151,14 +180,33 @@ strong
 	font-size: 12px;
 }
 
+.cancelReply
+{
+	font-size: 13px;
+}
+
+.replyBox
+{
+	border-left: 1px solid #e0e0e0;
+}
+
 footer
 {
 	height: 70px;
 }
 
 
+
+
+
 @media only screen and (max-width: 500px)
 {
+	.maxWrapSmall
+	{
+		width: 95%;
+		margin: auto;
+	}
+
 	.profilePicNav
 	{
 		width: 40px;
@@ -179,6 +227,11 @@ footer
 	.postsPic
 	{
 		height: 280px;
+	}
+
+	.postEnlarge
+	{
+		padding: 0 10px 0 10px !important;
 	}
 
 	.paddingOff

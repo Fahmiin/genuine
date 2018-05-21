@@ -51,3 +51,15 @@
         M.toast({html: 'Review successfully removed!'})
     </script>
 @endif
+
+@if(!empty(Session::get('session_code')) && Session::get('session_code') == 'replySuccess')
+    <script>
+        M.toast({html: 'Reply successfully posted!'})
+    </script>
+@endif
+
+@if(!empty(Session::get('session_code')) && Session::get('session_code') == 'deleteReplySuccess')
+    <script>
+        M.toast({html: 'Reply successfully removed!'})
+    </script>
+@endif

@@ -85,4 +85,21 @@ $(document).ready(() =>
 			}
 		});
 	});
+
+	//REPLY FUNCTIONALITY
+	$('.reply').on('click', function()
+	{
+		const comment = $(this).data('comment');
+		const reply = $(this).data('reply');
+		$(comment).show(500);
+		$(reply).hide(500);
+	});
+
+	$('.cancelReply').on('click', function()
+	{
+		const comment = $(this).data('comment');
+		const reply = $(this).data('reply');
+		$(comment).hide(500);
+		$(reply).show(500);
+	});
 });
