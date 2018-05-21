@@ -30,6 +30,7 @@ Route::post('/profile/products', 'ProfileController@createProduct')->name('creat
 Route::delete('/profile/product/{id}', 'ProfileController@deleteProduct')->name('deleteProduct');
 
 Route::post('/post', 'PostController@createPost')->name('createPost');
+Route::post('/post/edit/{id}', 'PostController@editPost')->name('editPost');
 Route::delete('/post/{id}', 'PostController@deletePost')->name('deletePost');
 
 Route::get('/search', 'MainController@showPosts')->name('showPosts');

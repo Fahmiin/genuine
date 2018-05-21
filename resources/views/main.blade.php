@@ -36,9 +36,8 @@
                             </div>
                         @endforeach</span>
                         <br>
-                        <p class="postTimestamp">posted {{$post->created_at->diffForHumans()}}</p>
-                        <br>
-                        <p class="postTimestamp">{{$post->comments->count()}} total comments</p>
+                        <p class="postTimestamp left">posted {{$post->created_at->diffForHumans()}}</p>
+                        <p class="postTimestamp right">{{$post->comments->count()}} total comments</p>
                     </div>
                 </div>
                 <div class="card-action">

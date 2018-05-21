@@ -33,6 +33,11 @@
 	margin: 10px;
 }
 
+.card-action
+{
+	padding-bottom: 0 !important;
+}
+
 #fileUpload
 {
 	display: none;

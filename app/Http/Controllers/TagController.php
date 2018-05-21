@@ -44,7 +44,7 @@ class TagController extends Controller
     public function createTag(Request $request)
     {
 
-    	$this->validate($request, ['tag' => 'required|max:20']);
+    	$request->validate(['tag' => 'required|max:20']);
 
     	$tag = new Tag;
     	$tag->tag = $request->input('tag');

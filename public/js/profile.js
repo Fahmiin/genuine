@@ -59,4 +59,13 @@ $(document).ready(() =>
 			$('.productsBody').addClass('hide-on-med-and-down');
 		}
 	});
+
+	$('.editPost').on('click', function()
+	{
+		const data = $(this).data('id');
+		const data2 = $(this).data('hide');
+		$(data).show(500);
+		$(data2).hide(500);
+		$(this).hide(500);
+	});
 });

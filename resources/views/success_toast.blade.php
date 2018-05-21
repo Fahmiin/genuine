@@ -33,3 +33,9 @@
         M.toast({html: 'New tag created!'})
     </script>
 @endif
+
+@if(!empty(Session::get('session_code')) && Session::get('session_code') == 'editSuccess')
+    <script>
+        M.toast({html: 'Post edited successfully!'})
+    </script>
+@endif

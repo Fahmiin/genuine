@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function createPost(Request $request)
     {
-        $this->validate($request,
+        $request->validate(
         [
             'postPic' => 'required',
             'postDescription' => 'required',
@@ -33,6 +33,15 @@ class PostController extends Controller
         $post->tags()->attach($request->tags);
 
         return back()->with('session_code', 'postSuccess');
+    }
+
+    public function editPost(Request $request, $id)
+    {
+        $post = Post::find($id);
+        $post->postDescription = $request->input('editPost');
+        $request->user()->posts()->save($post);
+
+        return back()->with('session_code', 'editSuccess');
     }
 
     public function deletePost($id)

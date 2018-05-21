@@ -331,7 +331,7 @@
 		                    <img src="/uploads/postPic/{{$post->postPic}}" class="postsPic">
 		                </div>
 		                <div class="card-content">
-		                    <div class="row spacingBottom">
+		                    <div class="row">
 		                        <div class="col s3">
 		                            <img src="/uploads/profilepic/{{$userP->profilepic}}" class="profileImage">
 		                        </div>
@@ -346,7 +346,19 @@
 		                    </div>
 		                    <div class="textarea">
 		                        <br>
-		                        <p><strong>{{$userP->name}}</strong> {{$post->postDescription}}</p>
+		                        <p id="description{{$post->id}}"><strong>{{$userP->name}}</strong> {{$post->postDescription}}</p>
+		                        <div class="hidden" id="post{{$post->id}}">
+		                        	<form action="{{route('editPost', ['id' => $post->id])}}" method="POST">
+		                        		@csrf
+		                        		<div class="input-field">
+			                        		<textarea name="editPost" class="materialize-textarea">{{$post->postDescription}}</textarea>
+			                        		<label for="editPost">Edit your post</label>
+			                        	</div>
+			                        	<div class="input-field">
+			                        		<button type="submit" class="btn orange darken-2 right">Save</button>
+			                        	</div>
+		                        	</form>
+		                        </div>
 		                        <br>
 				                <span>@foreach($post->tags as $tag)
 		                            <div class="chip">
@@ -354,24 +366,26 @@
 		                            </div>
 		                        @endforeach</span>
 		                        <br>
-		                        <p class="postTimestamp">posted {{$post->created_at->diffForHumans()}}</p>
-		                        <br>
-		                        <p class="postTimestamp">{{$post->comments->count()}} total comments</p>
+		                        <p class="postTimestamp left">posted {{$post->created_at->diffForHumans()}}</p>
+		                        <p class="postTimestamp right">{{$post->comments->count()}} total comments</p>
 		                    </div>
 		                </div>
 		                <div class="card-action">
-		                    <span class="left spacingBottom"><i class="material-icons">favorite</i></span>
-		                    @auth
-			                    @if($user->id == $userP->id)
-			                    <form action="{{route('deletePost', ['id' => $post->id])}}" method="POST">
-			                    	@csrf
-			                    	@method('DELETE')
-				                    <div class="input-field right">
-			                            <button type="submit" class="btn orange darken-2">Delete</button>
-			                        </div>
-				                </form>
-			                    @endif
-			                @endauth    
+		                	<div class="row">
+		                		<div class="col s2 m2">
+		                			<span class="left spacingBottom"><i class="material-icons">favorite</i></span>
+		                		</div>
+			                    @auth
+				                    @if($user->id == $userP->id)
+				                    <div class="col s7 m7">
+				                    	<button class="waves-effect waves-light btn orange darken-2 right editPost" data-id="#post{{$post->id}}" data-hide="#description{{$post->id}}">Edit</button>
+				                    </div>
+				                    <div class="col s3 m3">
+					                    <a class="waves-effect waves-light btn modal-trigger orange darken-2 right" href="#deleteConfirm{{$post->id}}">Delete</a>
+					                </div>
+				                    @endif
+				                @endauth
+				            </div>  
 		                </div>
 		            </div>
 		            <div class="col m1"></div>
@@ -424,6 +438,29 @@
 		        </div>
             @endif
         </div>
+	</div>
+	<div class="modal" id="deleteConfirm{{$post->id}}">
+		<div class="modal-content">
+			<div class="center-align">
+				<h5>Are you sure you want to delete this post?</h5>
+			</div>
+			<div class="row">
+				<div class="col s6 m6 center-align">
+					<div class="input-field">
+						<a href="/profile" class="btn orange darken-2">Cancel</a>
+					</div>
+				</div>
+				<div class="col s6 m6 center-align">
+					<form action="{{route('deletePost', ['id' => $post->id])}}" method="POST">
+	                	@csrf
+	                	@method('DELETE')
+	                    <div class="input-field">
+	                        <button type="submit" class="btn orange darken-2">Delete</button>
+	                    </div>
+	                </form>
+				</div>
+			</div>
+		</div>
 	</div>
 	@endforeach
 @endsection

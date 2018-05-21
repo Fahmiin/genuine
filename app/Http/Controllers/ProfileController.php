@@ -59,7 +59,7 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request, $id)
     {
-        $this->validate(request(),
+        $request->validate(
         [
             'name' => 'required|max:10',
             'tagline' => 'required',
@@ -112,7 +112,7 @@ class ProfileController extends Controller
     //PRODUCTS CONTROLLER
     public function createProduct(Request $request)
     {
-        $this->validate(request(),
+        $request->validate(
         [
             'productTitle' => 'required|max:30',
             'productDescription' => 'required',

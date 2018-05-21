@@ -14,7 +14,7 @@
 						<input type="search" placeholder="Search for a Tag..." class="tagSearch" id="searchTag">
 					</div>
 				</form>
-				<div class="collection tagSearchResults"></div>
+				<div class="collection tagSearchResults hidden"></div>
 			</div>
 			<div class="col s12 m5">
 				<div class="card">
