@@ -2,16 +2,20 @@
     @auth
     <a class="btn-floating orange darken-4 btn-large"><i class="large material-icons">home</i></a>
     <ul>
-        <li><a href="#" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="Private message"><i class="large material-icons">chat</i></a></li>
-        <li><a href="#newPostModal" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="New post"><i class="large material-icons">edit</i></a></li>
-        <li><a href="#searchModal" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger hide-on-large-only" data-position="left" data-tooltip="Search"><i class="large material-icons">search</i></a></li>
-        <li><a href="#" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="Notifications"><i class="large material-icons">notifications</i></a></li>
-        <li><a href="/tags" class="btn-floating orange darken-4 btn-large tooltipped modal-trigger" data-position="left" data-tooltip="Tags page"><i class="large material-icons">local_offer</i></a></li>
+        <li><a href="#newPostModal" class="btn-floating orange darken-4 btn-large modal-trigger"><i class="large material-icons">edit</i></a></li>
+        <li><a href="#searchModal" class="btn-floating orange darken-4 btn-large modal-trigger hide-on-large-only"><i class="large material-icons">search</i></a></li>
+        <li><a href="/tags" class="btn-floating orange darken-4 btn-large modal-trigger"><i class="large material-icons">local_offer</i></a></li>
+        <li><a href="#" class="btn-floating orange darken-4 btn-large modal-trigger hide-on-med-and-down"><i class="large material-icons">notifications</i></a></li>
     </ul>
     @else
-    <a class="btn-floating orange darken-4 btn-large modal-trigger hide-on-large-only" href="#searchModal"><i class="large material-icons">search</i></a>
+    <a class="btn-floating orange darken-4 btn-large"><i class="large material-icons">add</i></a>
+    <ul>
+        <li><a class="btn-floating orange darken-4 btn-large modal-trigger hide-on-large-only" href="#searchModal"><i class="large material-icons">search</i></a></li>
+        <li><a href="/tags" class="btn-floating orange darken-4 btn-large modal-trigger"><i class="large material-icons">local_offer</i></a></li>
+    </ul>
     @endauth
 </div>
+
 <div class="modal" id="newPostModal">
 	<div class="modal-content">
 		<h4 class="center">Share a new post</h4>
@@ -44,6 +48,7 @@
 		</form>
 	</div>
 </div>
+
 <div class="modal" id="searchModal">
     <div class="modal-content">
         <h4 class="center">Search for a user</h4>

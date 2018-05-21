@@ -41,6 +41,11 @@
 								<span><i class="material-icons">star</i></span>
 								<span><i class="material-icons">star</i></span>
 							</p>
+							@auth
+								@if($user->id != $userP->id)
+								<a href="#reviewModal" class="modal-trigger reviewLink">Write a review</a>
+								@endif
+							@endauth	
 						</div>
 						<div class="card-action">
 							<h6 class="center-align spacing">Speed Contact</h6>
@@ -268,8 +273,35 @@
 					</li>
 					<li>
 						<div class="collapsible-header"><i class="material-icons">star_rate</i>My reviews</div>
-						<div class="collapsible-body">
-							<span>No reviews yet</span>
+						<div class="collapsible-body paddingOff">
+							@if(empty($userP->reviews))
+							@else
+							<ul class="collection">
+								@foreach($userP->reviews as $review)
+								<li class="collection-item reviewBoxes">
+									<div class="row">
+										<div class="col s2 m1 center-align">
+											<img src="/uploads/profilepic/{{$review->user->profilepic}}" class="circle">
+										</div>
+										<div class="col s9 m10 spacingTop">
+											<span><strong>{{$review->user->name}}</strong>: <em>"{{$review->review}}"</em></span>
+										</div>
+										<div class="col s1 m1 right paddingTop">
+											@auth
+												@if($review->user->id == $user->id)
+												<form action="{{route('deleteReview', ['id' => $review->id])}}" method="POST">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
+												</form>
+												@endif
+											@endauth	
+										</div>
+									</div>
+								</li>
+								@endforeach
+							</ul>
+							@endif
 						</div>
 					</li>
 				</ul>
@@ -289,6 +321,21 @@
 					</li>
 				</ul>
 			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="reviewModal">
+		<div class="modal-content">
+			<h4 class="center">Write a review for {{$userP->name}}</h4>
+			<form action="{{route('createReview', ['id' => $userP->id])}}" method="POST">
+				@csrf
+				<div class="input-field">
+					<textarea class="materialize-textarea" name="review" required></textarea>
+				</div>
+				<div class="input-field center-align">
+					<button type="submit" class="btn orange darken-2">Submit</button>
+				</div>
+			</form>
 		</div>
 	</div>
 	
@@ -355,9 +402,10 @@
 			                        		<label for="editPost">Edit your post</label>
 			                        	</div>
 			                        	<div class="input-field">
-			                        		<button type="submit" class="btn orange darken-2 right">Save</button>
+			                        		<button class="btn-floating btn-small waves-effect waves-light orange darken-2 right" type="submit"><i class="material-icons">save</i></button>
 			                        	</div>
 		                        	</form>
+									<a class="cancelEditPost" data-id="#post{{$post->id}}" data-hide="#description{{$post->id}}" data-edit="#edit{{$post->id}}"><strong>Cancel</strong></a>
 		                        </div>
 		                        <br>
 				                <span>@foreach($post->tags as $tag)
@@ -370,7 +418,7 @@
 		                        <p class="postTimestamp right">{{$post->comments->count()}} total comments</p>
 		                    </div>
 		                </div>
-		                <div class="card-action">
+		                <div class="card-action cardPost">
 		                	<div class="row">
 		                		<div class="col s2 m2">
 		                			<span class="left spacingBottom"><i class="material-icons">favorite</i></span>
@@ -378,7 +426,7 @@
 			                    @auth
 				                    @if($user->id == $userP->id)
 				                    <div class="col s7 m7">
-				                    	<button class="waves-effect waves-light btn orange darken-2 right editPost" data-id="#post{{$post->id}}" data-hide="#description{{$post->id}}">Edit</button>
+				                    	<button class="waves-effect waves-light btn orange darken-2 right editPost" data-id="#post{{$post->id}}" data-hide="#description{{$post->id}}" id="edit{{$post->id}}">Edit</button>
 				                    </div>
 				                    <div class="col s3 m3">
 					                    <a class="waves-effect waves-light btn modal-trigger orange darken-2 right" href="#deleteConfirm{{$post->id}}">Delete</a>

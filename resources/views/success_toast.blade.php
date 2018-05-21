@@ -39,3 +39,15 @@
         M.toast({html: 'Post edited successfully!'})
     </script>
 @endif
+
+@if(!empty(Session::get('session_code')) && Session::get('session_code') == 'reviewSuccess')
+    <script>
+        M.toast({html: 'Review successfully posted!'})
+    </script>
+@endif
+
+@if(!empty(Session::get('session_code')) && Session::get('session_code') == 'deleteReviewSuccess')
+    <script>
+        M.toast({html: 'Review successfully removed!'})
+    </script>
+@endif

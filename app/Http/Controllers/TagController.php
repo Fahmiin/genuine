@@ -21,6 +21,11 @@ class TagController extends Controller
 				->with('user', $user)
 				->with('tags', $tags);	
 		}
+
+        $tags = Tag::all();
+
+        return view('tag')
+            ->with('tags', $tags);
 	}
 
 	public function showTag($id)

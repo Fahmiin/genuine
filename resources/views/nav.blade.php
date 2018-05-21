@@ -6,7 +6,7 @@
                     <div class="col s4 m2">
                         <a href="/" class="brand-logo left">Genuine</a>
                     </div>
-                    <div class="col s6 m7 hide-on-med-and-down">
+                    <div class="col m6 hide-on-med-and-down">
                         <form action="{{route('liveSearch')}}" method="GET">
                             @csrf
                             <div class="col m8 input-field">
@@ -15,7 +15,10 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col s8 m3">
+                    <div class="col s6 m1">
+                        <a href="#"><i class="material-icons right hide-on-large-only">notifications</i></a>
+                    </div>
+                    <div class="col s2 m3">
                         @guest
                             <a class='dropdown-trigger right hide-on-large-only' data-target='dropdownGuest'><i class="material-icons">menu</i></a>
                             <ul class="right hide-on-med-and-down">

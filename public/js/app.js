@@ -7,9 +7,6 @@ M.Modal.init(modal);
 const float = document.querySelector('.fixed-action-btn');
 M.FloatingActionButton.init(float);
 
-const tool = document.querySelectorAll('.tooltipped');
-M.Tooltip.init(tool);
-
 const openFile = function(event)
 {
 	const input = event.target;

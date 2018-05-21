@@ -68,4 +68,14 @@ $(document).ready(() =>
 		$(data2).hide(500);
 		$(this).hide(500);
 	});
+
+	$('.cancelEditPost').on('click', function()
+	{
+		const data = $(this).data('id');
+		const data2 = $(this).data('hide');
+		const data3 = $(this).data('edit');
+		$(data).hide(500);
+		$(data2).show(500);
+		$(data3).show(500);
+	});
 });

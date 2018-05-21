@@ -17,6 +17,7 @@
 				<div class="collection tagSearchResults hidden"></div>
 			</div>
 			<div class="col s12 m5">
+				@auth
 				<div class="card">
 					<form action="{{route('createTag')}}" method="POST">
 						@csrf
@@ -33,6 +34,7 @@
 						</div>
 					</form>
 				</div>
+				@endauth
 				<div class="card">
 					<div class="card-content">
 						<span class="card-title center-align">Popular tags</span>

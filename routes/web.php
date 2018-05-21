@@ -43,3 +43,6 @@ Route::get('/tags', 'TagController@showTags')->name('showTags');
 Route::get('/search/tags', 'TagController@searchTags')->name('searchTags');
 Route::get('/tag/{id}', 'TagController@showTag')->name('showTag');
 Route::post('/tags/create', 'TagController@createTag')->name('createTag');
+
+Route::post('/review/{id}', 'ReviewController@createReview')->name('createReview');
+Route::delete('/review/delete/{id}', 'ReviewController@deleteReview')->name('deleteReview');

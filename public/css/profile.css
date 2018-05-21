@@ -20,10 +20,50 @@
 	padding-bottom: 10px;
 }
 
+.spacingTop
+{
+	padding-top: 12px !important;
+}
+
 .paddingLeft
 {
 	padding-left: 20px;
 }
+
+.paddingTop
+{
+	padding-top: 6px !important;
+}
+
+.hidden
+{
+	display: none;
+}
+
+a
+{
+	cursor: pointer;
+}
+
+.body
+{
+	min-height: 200px;
+	overflow: auto;
+}
+
+.spacingBottom
+{
+	margin-bottom: 10px;
+}
+
+.paddingOff
+{
+	padding: 0 !important;
+}
+
+
+
+
 
 .profilePic
 {
@@ -33,7 +73,7 @@
 	margin: 10px;
 }
 
-.card-action
+.cardPost
 {
 	padding-bottom: 0 !important;
 }
@@ -56,6 +96,11 @@
 	padding-top: 0 !important;
 }
 
+.reviewLink
+{
+	font-size: 13px;
+}
+
 .contact
 {
 	margin-top: 20px;
@@ -76,27 +121,6 @@
 {
 	margin-bottom: 0;
 	margin-top: 0;
-}
-
-.hidden
-{
-	display: none;
-}
-
-a
-{
-	cursor: pointer;
-}
-
-.body
-{
-	min-height: 200px;
-	overflow: auto;
-}
-
-.spacingBottom
-{
-	margin-bottom: 10px;
 }
 
 .editProductsButton
@@ -128,11 +152,6 @@ a
 {
 	opacity: 0.7;
 	cursor: pointer;
-}
-
-.paddingOff
-{
-	padding: 0 !important;
 }
 
 .profileImage
@@ -176,5 +195,11 @@ a
 	.marginTopOff
 	{
 		margin-top: 0 !important;
+	}
+
+	.reviewBoxes
+	{
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
