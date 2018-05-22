@@ -42,7 +42,16 @@
                 </div>
                 <div class="card-action">
                     <a href="#modalComment{{$post->id}}" class="modal-trigger">Comments</a>
-                    <span class="right"><i class="material-icons">favorite</i></span>
+                    <a class="right"><i class="material-icons black-text like
+                        @auth
+                        @foreach($user->likes as $like)
+                            @if ($like->post_id == $post->id)
+                                liked 
+                            @else   
+                            @endif
+                        @endforeach
+                        @endauth" data-post="{{$post->id}}" id="like{{$post->id}}">favorite</i></a>
+                    <span class="right marginRightSmall">{{$post->likes->count()}}</span>
                 </div>
             </div>
 

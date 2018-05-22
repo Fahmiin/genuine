@@ -22,7 +22,7 @@ $(document).ready(() =>
 		{
 			type: 'GET',
 			url: '/search/tags',
-			data: {'search': value},
+			data: {search: value},
 			success: function (data)
 			{
 				$('.tagSearchResults').html(data);

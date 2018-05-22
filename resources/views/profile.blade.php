@@ -421,8 +421,17 @@
 		                <div class="card-action cardPost">
 		                	<div class="row">
 		                		<div class="col s2 m2">
-		                			<span class="left spacingBottom"><i class="material-icons">favorite</i></span>
-		                		</div>
+		                			<a class="left spacingBottom marginRightSmall"><i class="material-icons black-text like
+				                        @auth
+				                        @foreach($user->likes as $like)
+				                            @if ($like->post_id == $post->id)
+				                                liked 
+				                            @else   
+				                            @endif
+				                        @endforeach
+				                        @endauth" data-post="{{$post->id}}" id="like{{$post->id}}">favorite</i></a>
+				                    <span>{{$post->likes->count()}}</span>
+				               	</div>
 			                    @auth
 				                    @if($user->id == $userP->id)
 				                    <div class="col s7 m7">

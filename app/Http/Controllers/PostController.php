@@ -8,6 +8,7 @@ use App\User;
 use App\Comment;
 use App\Tag;
 use App\Reply;
+use App\Like;
 use Auth;
 use Image;
 
@@ -66,5 +67,31 @@ class PostController extends Controller
         $post->delete();
 
         return back()->with('session_code', 'deleteSuccess');
+    }
+
+    public function createLike(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $post_id = $request->get('post_id');
+            $post = Post::find($post_id);
+            $user = Auth::user();
+            $liked_post = Like::where('post_id', $post_id)
+                                ->where('user_id', $user->id)
+                                ->first();
+
+            if($liked_post === null)
+            {
+                $newLike = new Like;
+                $newLike->post_id = $post_id;
+                $user->likes()->save($newLike);
+
+                return response('like created!');
+            }
+            
+            $liked_post->delete();
+
+            return response('like delete!');
+        }    
     }
 }

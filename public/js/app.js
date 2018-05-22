@@ -22,14 +22,22 @@ const openFile = function(event)
 };
 
 $(document).ready(() =>
-{
+{	
+	//AJAX SETUP ON CSRF TOKEN FOR NON-FORMS
+	$.ajaxSetup(
+	{
+		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+	});
+
+
 	//SELECT2 INIT
 	$('.select2').select2();
 
+
 	$('#search, #search2').on('keyup', () =>
 	{
-		let value = $('#search').val();
-		let value2 = $('#search2').val();
+		const value = $('#search').val();
+		const value2 = $('#search2').val();
 		//REVEAL ONLY IF SEARCH INPUT IS FOCUSED AND HAS VALUE
 		if ((value != "") || (value2 != ""))
 		{
@@ -46,6 +54,8 @@ $(document).ready(() =>
 		}
 	});
 
+
+	//LIVE SEARCH FUNCTIONALITY
 	$('#search').on('keypress', () =>
 	{	
 		if (event.keyCode === 13)
@@ -53,12 +63,12 @@ $(document).ready(() =>
 			event.preventDefault();
 		}	
 
-		let value = $('#search').val();
+		const value = $('#search').val();
 		$.ajax(
 		{
 			type: 'GET',
 			url: '/search/users',
-			data: {'search': value},
+			data: {search: value},
 			success: function(data)
 			{
 				$('.searchResults').html(data);
@@ -73,12 +83,12 @@ $(document).ready(() =>
 			event.preventDefault();
 		}
 
-		let value = $('#search2').val();
+		const value = $('#search2').val();
 		$.ajax(
 		{
 			type: 'GET',
 			url: '/search/users',
-			data: {'search': value},
+			data: {search: value},
 			success: function(data)
 			{
 				$('.searchResults').html(data);
@@ -86,7 +96,8 @@ $(document).ready(() =>
 		});
 	});
 
-	//REPLY FUNCTIONALITY
+
+	//REPLIES FUNCTIONALITY
 	$('.reply').on('click', function()
 	{
 		const comment = $(this).data('comment');
@@ -101,5 +112,37 @@ $(document).ready(() =>
 		const reply = $(this).data('reply');
 		$(comment).hide(500);
 		$(reply).show(500);
+	});
+
+
+	//LIKES FUNCTIONALITY
+	$('.like').on('click', function(e)
+	{
+		const postID = $(this).data('post');
+		e.preventDefault();
+
+		$.ajax(
+		{
+			type: 'POST',
+			url: '/like',
+			data: {post_id: postID},
+			success: function(data)
+			{
+				if (data == 'like created!')
+				{
+					const like = '#like'+postID;
+					$(like).removeClass('black-text').addClass('liked');
+				}
+
+				else
+				{
+					const like = '#like'+postID;
+					if ($(like).hasClass('liked'))
+					{
+						$(like).removeClass('liked').addClass('black-text');
+					}
+				}
+			}
+		});
 	});
 });
