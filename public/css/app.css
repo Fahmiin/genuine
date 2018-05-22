@@ -48,6 +48,11 @@ a
 	margin-left: 30px !important;
 }
 
+.marginOff
+{
+	margin: 0 !important;
+}
+
 strong
 {
 	color: #f57c00;
@@ -72,6 +77,11 @@ strong
 .marginRightSmall
 {
 	margin-right: 8px !important;
+}
+
+.paddingLeftSmall
+{
+	padding-left: 50px !important;
 }
 
 
@@ -195,6 +205,11 @@ strong
 	border-left: 1px solid #e0e0e0;
 }
 
+.reply
+{
+	padding-top: 10px !important;
+}
+
 .like
 {
 	transition: all .08s ease;
@@ -250,14 +265,41 @@ footer
 		padding: 0 10px 0 10px !important;
 	}
 
+	.profileImageComment
+	{
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+
 	.paddingOff
 	{
 		padding: 0 !important;
 	}
 
+	.paddingSmall
+	{
+		padding: 8px 0 8px 0 !important;
+	}
+
 	.paddingComment
 	{
-		padding-top: 5px !important;
+		padding-top: 8px !important;
 		padding-left: 8px !important;
+	}
+
+	.paddingLeftSmall
+	{
+		padding-left: 8px !important;
+	}
+
+	.spacingTop
+	{
+		padding-top: 5px !important;
+	}
+
+	.spaceAbove
+	{
+		padding-top: 10px !important;
 	}
 }

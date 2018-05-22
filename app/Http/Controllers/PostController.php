@@ -50,6 +50,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $comments = Comment::where('post_id', $id)->get();
+        $likes = Like::where('post_id', $id)->get();
         
         foreach($comments as $comment)
         {
@@ -61,6 +62,11 @@ class PostController extends Controller
             }
 
             $comment->delete();
+        }
+
+        foreach($likes as $like)
+        {
+            $like->delete();
         }
 
         $post->tags()->detach();

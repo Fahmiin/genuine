@@ -420,7 +420,7 @@
 		                </div>
 		                <div class="card-action cardPost">
 		                	<div class="row">
-		                		<div class="col s2 m2">
+		                		<div class="col s3 m2">
 		                			<a class="left spacingBottom marginRightSmall"><i class="material-icons black-text like
 				                        @auth
 				                        @foreach($user->likes as $like)
@@ -434,7 +434,7 @@
 				               	</div>
 			                    @auth
 				                    @if($user->id == $userP->id)
-				                    <div class="col s7 m7">
+				                    <div class="col s6 m7">
 				                    	<button class="waves-effect waves-light btn orange darken-2 right editPost" data-id="#post{{$post->id}}" data-hide="#description{{$post->id}}" id="edit{{$post->id}}">Edit</button>
 				                    </div>
 				                    <div class="col s3 m3">
@@ -468,11 +468,12 @@
                         <ul class="collection">
                             <li class="collection-item">
                                 <div class="row">
-                                    <div class="col s2 m1 paddingOff">
+                                    <div class="col s2 m2 paddingOff center-align">
                                         <img src="/uploads/profilepic/{{$comment->user->profilepic}}" class="profileImageComment">
                                     </div>
-                                    <div class="col s8 m10 paddingOff">
-                                        <p class="marginOff paddingComment paddingLeft"><strong>{{$comment->user->name}}:</strong> {{$comment->comment}}</p>
+                                    <div class="col s8 m9 paddingOff">
+                                        <p class="marginOff paddingComment"><strong>{{$comment->user->name}}:</strong> {{$comment->comment}}</p>
+                                        <p class="postTimestamp marginOff">{{$comment->created_at->diffForHumans()}}</p>
                                     </div>
                                     <div class="col s2 m1 paddingOff">
                                         @auth
@@ -481,12 +482,12 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="spacingTop">
-                                                    <button type="submit" class="btn-floating btn-small left orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
+                                                    <button type="submit" class="btn-floating btn-small right orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
                                                 </div>
                                             </form>
-                                             @else
-                                            <a data-reply="#reply{{$comment->id}}" data-comment="#comment{{$comment->id}}" class="left paddingTop reply" id="reply{{$comment->id}}">Reply</a>  
-                                            @endif 
+                                            @else
+                                            <a data-reply="#reply{{$comment->id}}" data-comment="#comment{{$comment->id}}" class="right paddingTop reply" id="reply{{$comment->id}}">Reply</a>
+                                            @endif     
                                         @endauth
                                     </div>
                                 </div>
@@ -514,25 +515,26 @@
                             </li>
                             @foreach($comment->replies as $reply)
                             <div class="marginLeft replyBox">
-                                <li class="collection-item paddingOffSmall">
+                                <li class="collection-item paddingSmall">
                                     <div class="row">
                                         <div class="col m1 hide-on-med-and-down">
                                             <i class="small material-icons spacingTop">reply</i>
                                         </div>
-                                        <div class="col s3 m1 paddingOffSmall spacingTop">
+                                        <div class="col s3 m2 paddingOff spacingTop center-align">
                                             <img src="/uploads/profilepic/{{$reply->user->profilepic}}" class="profileImageComment">
                                         </div>
-                                        <div class="col s7 m8 paddingOffSmall">
-                                            <p class="marginOff paddingComment paddingLeft"><strong>{{$reply->user->name}}:</strong> {{$reply->reply}}</p>
+                                        <div class="col s6 m7 paddingOff">
+                                            <p class="marginOff paddingComment spaceAbove"><strong>{{$reply->user->name}}:</strong> {{$reply->reply}}</p>
+                                            <p class="postTimestamp marginOff">{{$reply->created_at->diffForHumans()}}</p>
                                         </div>
-                                        <div class="col s2 m2 paddingOffSmall">
+                                        <div class="col s3 m2 paddingOff">
                                             @auth
                                                 @if($reply->user->id == $user->id)
                                                 <form action="{{route('deleteReply', ['id' => $reply->id])}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <div class="spacingTop right">
-                                                        <button type="submit" class="btn-floating btn-small floatLeft orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
+                                                    <div class="spacingTop center-align paddingLeftSmall">
+                                                        <button type="submit" class="btn-floating btn-small orange darken-2 waves-effect waves-light"><i class="material-icons">delete_forever</i></button>
                                                     </div>
                                                 </form>
                                                 @endif     
@@ -543,7 +545,7 @@
                             </div>
                             @endforeach
                         </ul>
-	                    @endforeach
+                    	@endforeach
 		            </div>
 		        </div>
             @endif
