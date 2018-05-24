@@ -128,19 +128,54 @@ $(document).ready(() =>
 			data: {post_id: postID},
 			success: function(data)
 			{
+				const like = '#like'+postID;
+
 				if (data == 'like created!')
 				{
-					const like = '#like'+postID;
 					$(like).removeClass('black-text').addClass('liked');
 				}
 
 				else
 				{
-					const like = '#like'+postID;
 					if ($(like).hasClass('liked'))
 					{
 						$(like).removeClass('liked').addClass('black-text');
 					}
+				}
+			}
+		});
+	});
+
+
+	//FOLLOW FUNCTIONALITY
+	$('.follow').on('click', function(e)
+	{
+		const userP_id = $(this).data('userid');
+		e.preventDefault();
+
+		$.ajax(
+		{
+			type: 'POST',
+			url: '/favourite',
+			data: {userP_id: userP_id},
+			success: function(data)
+			{
+				const follow = '#follow' + userP_id;
+
+				if (data == 'faved')
+				{
+					$(follow).removeClass('orange darken-2');
+					$(follow).addClass('blue-grey darken-1 white-text')
+						.text('Unfollow')
+						.append('<i class="material-icons left">person</i>');
+				}
+
+				else
+				{
+					$(follow).removeClass('blue-grey darken-1 white-text')
+						.text('Follow')
+						.append('<i class="material-icons left">person_add</i>');
+					$(follow).addClass('orange darken-2');
 				}
 			}
 		});

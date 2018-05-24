@@ -41,9 +41,11 @@
         <li><a class="modal-trigger" href="#modalSignup"><strong>Signup</strong></a></li>
     </ul>
     <ul id="dropdownUser" class="dropdown-content">
-        <li><a href="{{route('profilePage', ['id' => '$user->id'])}}"><strong>My Profile</strong></a></li>
+        <li><a href="/profile"><strong>My Profile</strong></a></li>
+        <li><a href="/contacts"><strong>Contacts</strong></a></li>
         <li><a class="modal-trigger" href="#modalLogout"><strong>Logout</strong></a></li>
     </ul>
+
     <div id="modalLogin" class="modal">
         <div class="modal-content">   
             <h4 class="center">Login</h4>
@@ -66,6 +68,7 @@
         </div>
         </div>
     </div>
+
     <div id="modalSignup" class="modal">
         <div class="modal-content">
            <h4 class="center">Signup</h4>
@@ -94,6 +97,7 @@
             </div>
         </div>
     </div>
+
     <div id="modalLogout" class="modal">
         <div class="modal-content">
             <h4 class="center">Leaving so soon?</h4>

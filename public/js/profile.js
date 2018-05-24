@@ -19,7 +19,7 @@ const openFileProfile = function(event)
 };
 
 $(document).ready(() =>
-{	
+{
 	$('#seeMoreProfile').on('click', () =>
 	{
 		if ($('#seeMore').hasClass('hide-on-med-and-down'))

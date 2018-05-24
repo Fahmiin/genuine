@@ -50,3 +50,7 @@ Route::delete('/review/delete/{id}', 'ReviewController@deleteReview')->name('del
 
 Route::post('/reply/{id}', 'ReplyController@createReply')->name('createReply');
 Route::delete('/reply/delete/{id}', 'ReplyController@deleteReply')->name('deleteReply');
+
+Route::post('/favourite', 'BookmarkController@createFavourite')->name('createFav');
+Route::post('/block', 'BookmarkController@createBlock')->name('createBlock');
+Route::get('/contacts', 'BookmarkController@showContacts')->name('showContacts');

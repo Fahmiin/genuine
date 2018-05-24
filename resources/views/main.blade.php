@@ -45,10 +45,7 @@
                     <a class="right"><i class="material-icons black-text like
                         @auth
                         @foreach($user->likes as $like)
-                            @if ($like->post_id == $post->id)
-                                liked 
-                            @else   
-                            @endif
+                            {{($like->post_id == $post->id) ? 'liked' : ''}}
                         @endforeach
                         @endauth" data-post="{{$post->id}}" id="like{{$post->id}}">favorite</i></a>
                     <span class="right marginRightSmall">{{$post->likes->count()}}</span>

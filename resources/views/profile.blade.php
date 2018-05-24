@@ -32,6 +32,23 @@
 						<a id="seeMoreProfile">See more</a>
 					</div>
 					<div class="hide-on-med-and-down" id="seeMore">
+						@if($user->id == $userP->id)
+						@else
+						<div class="card-action">
+							<button class="btn waves-effect waves-light follow orange darken-2
+							@auth
+							@foreach($user->bookmarks as $bookmark)
+	                            {{($bookmark->userP_id == $userP->id) ? 'blue-grey darken-1 white-text' : ''}}
+	                        @endforeach
+							@endauth
+							" data-userid="{{$userP->id}}" id="follow{{$userP->id}}"><i class="material-icons left">person_add</i>
+							@auth
+							@foreach($user->bookmarks as $bookmark)
+	                            {{($bookmark->userP_id == $userP->id) ? 'Unfollow' : ''}}
+                       		@endforeach
+							@endauth</button>
+						</div>
+						@endif
 						<div class="card-action">
 							<h6 class="center-align">Rated</h6>
 							<p class="spacing center-align">
@@ -424,10 +441,7 @@
 		                			<a class="left spacingBottom marginRightSmall"><i class="material-icons black-text like
 				                        @auth
 				                        @foreach($user->likes as $like)
-				                            @if ($like->post_id == $post->id)
-				                                liked 
-				                            @else   
-				                            @endif
+				                            {{($like->post_id == $post->id) ? 'liked' : ''}}
 				                        @endforeach
 				                        @endauth" data-post="{{$post->id}}" id="like{{$post->id}}">favorite</i></a>
 				                    <span>{{$post->likes->count()}}</span>
