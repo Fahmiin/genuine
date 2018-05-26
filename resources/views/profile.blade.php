@@ -565,6 +565,7 @@
             @endif
         </div>
 	</div>
+	
 	<div class="modal" id="deleteConfirm{{$post->id}}">
 		<div class="modal-content">
 			<div class="center-align">

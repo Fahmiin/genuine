@@ -111,27 +111,4 @@ class BookmarkController extends Controller
     	}
     }
 
-    public function createBlock(Request $request)
-    {
-    	if ($request->ajax())
-    	{
-	    	$userP = User::find($id);
-	    	$user = Auth::user();
-	    	$isBookmarked = Bookmark::find('userP_id', $userP->id)->first();
-
-	    	if($isBookmarked === null)
-	    	{
-	    		$bookmark = new Bookmark;
-	    		$bookmark->userP_id = $userP->id;
-		    	$bookmark->status = false;
-		    	$user->bookmarks()->save($bookmark);
-
-		    	return response('blocked');
-	    	}
-
-	    	$isBookmarked->delete();
-
-	    	return response('unblocked');
-    	}
-    }
 }

@@ -14,10 +14,10 @@
                 </div>
                 <div class="card-content">
                     <div class="row">
-                        <div class="col s3">
+                        <div class="col s3 m3">
                             <img src="/uploads/profilepic/{{$post->user->profilepic}}" class="profileImage">
                         </div>
-                        <div class="col s9">
+                        <div class="col s9 m9">
                             <p class="card-title"><a href="profile/{{$post->user->id}}" class="profileLinkMain">{{$post->user->name}}</a><span class="right"><i class="material-icons modal-trigger settings" data-target="modalSettings{{$post->user->id}}">more_vert</i></span></p>
                         </div>
                     </div>
