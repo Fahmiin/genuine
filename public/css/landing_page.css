@@ -1,0 +1,16 @@
+html
+{
+	padding: 0;
+	margin: 0;
+}
+
+.marginOff
+{
+	margin: 0;
+}
+
+.colored
+{
+	background-color: #ef6c00;
+	min-height: 300px;
+}

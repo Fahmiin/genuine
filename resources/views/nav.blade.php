@@ -4,7 +4,7 @@
             <div class="nav-wrapper">
                 <div class="row">
                     <div class="col s4 m2">
-                        <a href="/" class="brand-logo left">Genuine</a>
+                        <a href="/" class="brand-logo left">Lingo</a>
                     </div>
                     <div class="col m6 hide-on-med-and-down">
                         <form action="{{route('liveSearch')}}" method="GET">

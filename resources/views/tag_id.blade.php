@@ -10,7 +10,7 @@
 		<hr>
 	</div>
     <div class="row">
-        @foreach($tag->posts as $post)
+        @foreach($tag->posts->sortByDesc('id') as $post)
         <div class="col s12 m4">
             <div class="card">
                 <div class="card-image">

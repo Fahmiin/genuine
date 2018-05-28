@@ -15,7 +15,7 @@ class MainController extends Controller
 		if (Auth::check())
 		{
 			$user = Auth::user();
-			$posts = Post::all();
+			$posts = Post::paginate(20);
 
 			return view('main')
 				->with('user', $user)
@@ -23,7 +23,7 @@ class MainController extends Controller
 		}
 		
 		$user = User::all();
-		$posts = Post::all();
+		$posts = Post::paginate(20);
 		
 		return view('main')
 			->with('user', $user)
