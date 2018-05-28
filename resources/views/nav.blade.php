@@ -3,8 +3,8 @@
         <div class="containerMedium">
             <div class="nav-wrapper">
                 <div class="row">
-                    <div class="col s4 m2">
-                        <a href="/" class="brand-logo left">Lingo</a>
+                    <div class="col s2 m2">
+                        <a href="/home" class="brand-logo left"><img src="{{asset(Storage::url('lingo.png'))}}" class="brand"></a>
                     </div>
                     <div class="col m6 hide-on-med-and-down">
                         <form action="{{route('liveSearch')}}" method="GET">
@@ -15,7 +15,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col s6 m1">
+                    <div class="col s8 m1">
                         <a href="#"><i class="material-icons right hide-on-large-only">notifications</i></a>
                     </div>
                     <div class="col s2 m3">

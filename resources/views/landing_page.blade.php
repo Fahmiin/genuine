@@ -11,8 +11,11 @@
 		<title>Lingo</title>
 	</head>
 	<body>
-		<div class="colored">
-			<img src="{{asset('public/Lingo.png')}}">
+		<img src="{{asset(Storage::url('lingo.png'))}}" class="logo">
+		<h5 class="center-align white-text"><em>The haven for creatives</em></h5>
+		<br>
+		<div class="center-align">
+			<a href="/home" class="btn btn-large white orange-text"><i class="material-icons right">arrow_forward</i>Start Here</a>
 		</div>
 	</body>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>

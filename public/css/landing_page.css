@@ -2,6 +2,7 @@ html
 {
 	padding: 0;
 	margin: 0;
+	background-color: #ef6c00;
 }
 
 .marginOff
@@ -9,8 +10,11 @@ html
 	margin: 0;
 }
 
-.colored
+.logo
 {
-	background-color: #ef6c00;
-	min-height: 300px;
+	position: relative;
+	margin-top: 200px;
+	left: 35%;
+	width: 400px;
+	height: auto;
 }

@@ -86,6 +86,12 @@ strong
 
 
 
+.brand
+{
+	padding-top: 5px;
+	width: 125px;
+	height: auto;
+}
 
 .welcome
 {
@@ -232,6 +238,12 @@ footer
 
 @media only screen and (max-width: 500px)
 {
+	.brand
+	{
+		width: 110px;
+		height: auto;
+	}
+
 	.maxWrapSmall
 	{
 		width: 95%;
