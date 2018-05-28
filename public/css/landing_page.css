@@ -18,3 +18,14 @@ html
 	width: 400px;
 	height: auto;
 }
+
+
+
+@media only screen and (max-width: 500px)
+{
+	.logo
+	{
+		left: 25%;
+		width: 200px;
+	}
+}

@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="{{asset('materialize 1.0.0/css/materialize.min.css')}}"  media="screen,projection"/>
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
         <link rel="stylesheet" type="text/css" href="{{asset('css/landing_page.css')}}">
 
 		<title>Lingo</title>

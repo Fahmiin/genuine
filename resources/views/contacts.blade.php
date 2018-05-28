@@ -43,7 +43,7 @@
 		</div>
 		<div class="col m8 hide-on-med-and-down">
 			<div id="quickView">
-				<h6 class="center pulseBox orange white-text pulse">Select a profile for quick view</h6>
+				<h6 class="center">Select a profile for quick view</h6>
 			</div>
 		</div>
 	</div>
