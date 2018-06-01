@@ -12,9 +12,16 @@
 		@foreach($user->unreadNotifications as $notification)
 		<div class="row">
 			<div class="col s10 m11">
-				<a href="/profile/{{$notification->data['user_id']}}" class="collection-item row">
+				<a 
+					@if($notification->type == 'App\Notifications\NewPostCreated')	
+					href="/profile/{{$notification->data['user_id']}}"
+					@elseif($notification->type == 'App\Notifications\PostLike')
+					href="/profile" 
+					@endif
+					class="collection-item row">
 					<span class="col s9 m9 notifArea">
 						{{$notification->data['user']}}
+						<span class="postTimestamp">{{$notification->created_at->diffForHumans()}}</span>
 					</span>
 					<span class="col s2 m2 center-align">
 						<img src="/uploads/postPic/{{$notification->data['post']}}" class="notifPic">
@@ -29,9 +36,16 @@
 	</div>
 	<div class="collection">
 		@foreach($user->readNotifications as $notification)
-			<a href="/profile/{{$notification->data['user_id']}}" class="collection-item grey white-text row">
+			<a 
+				@if($notification->type == 'App\Notifications\NewPostCreated')	
+				href="/profile/{{$notification->data['user_id']}}"
+				@elseif($notification->type == 'App\Notifications\PostLike')
+				href="/profile" 
+				@endif
+				class="collection-item orange darken-1 white-text row">
 				<span class="col s10 m10 notifArea">
 					{{$notification->data['user']}}
+					<span class="postTimestamp">{{$notification->created_at->diffForHumans()}}</span>
 				</span>
 				<span class="col s2 m2 center-align">
 					<img src="/uploads/postPic/{{$notification->data['post']}}" class="notifPic">

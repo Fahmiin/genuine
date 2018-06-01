@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notifications\NewPostCreated;
+use App\Notifications\PostLike;
 use App\Post;
 use App\User;
 use App\Comment;
@@ -104,6 +105,15 @@ class PostController extends Controller
                 $newLike->post_id = $post_id;
                 $user->likes()->save($newLike);
 
+                $likedUser_id = Post::where('id', $post_id)->value('user_id');
+                    
+                if ($likedUser_id != $user->id)
+                {
+                    $likedUser = User::find($likedUser_id);
+                    $notif = new PostLike($user, $post);
+                    $likedUser->notify($notif);
+                }
+                
                 return response('like created!');
             }
             
