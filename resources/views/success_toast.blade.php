@@ -63,3 +63,9 @@
         M.toast({html: 'Reply successfully removed!'})
     </script>
 @endif
+
+@if(!empty(Session::get('session_code')) && Session::get('session_code') == 'mark')
+    <script>
+        M.toast({html: "You're all up to date!"})
+    </script>
+@endif

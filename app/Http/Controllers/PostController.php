@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notifications\NewPostCreated;
 use App\Post;
 use App\User;
 use App\Comment;
 use App\Tag;
 use App\Reply;
 use App\Like;
+use App\Bookmark;
 use Auth;
 use Image;
 
@@ -33,6 +35,16 @@ class PostController extends Controller
         $request->user()->posts()->save($post);
 
         $post->tags()->attach($request->tags);
+
+        $user = Auth::user();
+        $followers = Bookmark::where('userP_id', $user->id)->pluck('user_id');
+        $notif = new NewPostCreated($user, $post);
+
+        foreach($followers as $follower)
+        {
+            $user = User::find($follower);
+            $user->notify($notif);
+        }
 
         return back()->with('session_code', 'postSuccess');
     }

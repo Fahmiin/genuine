@@ -18,10 +18,10 @@ class BookmarkController extends Controller
 									->where('status', true)
 									->paginate(10);
 
-			return view('contacts')
-				->with('user', $user)
-				->with('contacts', $contacts);
+			return view('contacts')->with('contacts', $contacts);
 		}
+
+		return back();
 	}
 
 	public function quickView(Request $request)

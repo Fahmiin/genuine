@@ -12,38 +12,16 @@ class TagController extends Controller
 {
 	public function showTags()
 	{
-		if (Auth::check())
-		{
-			$user = Auth::user();
-			$tags = Tag::all();
-
-			return view('tag')
-				->with('user', $user)
-				->with('tags', $tags);	
-		}
-
         $tags = Tag::all();
 
-        return view('tag')
-            ->with('tags', $tags);
+        return view('tag')->with('tags', $tags);
 	}
 
 	public function showTag($id)
 	{
-		if (Auth::check())
-		{
-			$user = Auth::user();
-			$tag = Tag::find($id);
-
-			return view('tag_id')
-				->with('user', $user)
-				->with('tag', $tag);
-		}
-
 		$tag = Tag::find($id);
 
-		return view('tag_id')
-			->with('tag', $tag);
+		return view('tag_id')->with('tag', $tag);
 	}
 
     public function createTag(Request $request)

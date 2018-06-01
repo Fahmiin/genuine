@@ -19,24 +19,21 @@ class ProfileController extends Controller
         //PASS THESE DATA IF USER IS LOGGED IN
         if (Auth::check())
         {
-            $user = $userP = Auth::user();
+            $userP = Auth::user();
 
-            return view('profile')
-                ->with('user', $user)
-                ->with('userP',$userP);
+            return view('profile')->with('userP',$userP);
         }
+
+        return back();
     }
 
 
     //SHOW ALL DATA WHEN GUEST VISITS
     public function showLoggedout($id)
     {
-        $user = Auth::user();
         $userP = User::find($id);
 
-        return view('profile')
-            ->with('user', $user)
-            ->with('userP', $userP);
+        return view('profile')->with('userP', $userP);
     }
 
 

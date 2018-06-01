@@ -5,7 +5,6 @@
         <li><a href="#newPostModal" class="btn-floating orange darken-4 btn-large modal-trigger"><i class="large material-icons">edit</i></a></li>
         <li><a href="#searchModal" class="btn-floating orange darken-4 btn-large modal-trigger hide-on-large-only"><i class="large material-icons">search</i></a></li>
         <li><a href="/tags" class="btn-floating orange darken-4 btn-large modal-trigger"><i class="large material-icons">local_offer</i></a></li>
-        <li><a href="#" class="btn-floating orange darken-4 btn-large modal-trigger hide-on-med-and-down"><i class="large material-icons">notifications</i></a></li>
     </ul>
     @else
     <a class="btn-floating orange darken-4 btn-large"><i class="large material-icons">add</i></a>

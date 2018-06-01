@@ -26,7 +26,6 @@ Route::post('/profile/update/{id}', 'ProfileController@updateProfile')->name('up
 Route::post('/profile/details/about/{id}', 'ProfileController@updateAbout')->name('detailsUpdateAbout');
 Route::post('/profile/details/education/{id}', 'ProfileController@updateEducation')->name('detailsUpdateEducation');
 Route::post('/profile/details/work/{id}', 'ProfileController@updateWork')->name('detailsUpdateWork');
-
 Route::post('/profile/products', 'ProfileController@createProduct')->name('createProduct');
 Route::delete('/profile/product/{id}', 'ProfileController@deleteProduct')->name('deleteProduct');
 
@@ -55,3 +54,8 @@ Route::delete('/reply/delete/{id}', 'ReplyController@deleteReply')->name('delete
 Route::post('/favourite', 'BookmarkController@createFavourite')->name('createFav');
 Route::get('/contacts', 'BookmarkController@showContacts')->name('showContacts');
 Route::get('/quickview', 'BookmarkController@quickView')->name('quickView');
+
+Route::view('/notifications', 'notifications');
+
+Route::get('/mark', 'NotifController@mark')->name('mark');
+Route::get('/mark/{id}', 'NotifController@markType')->name('markType');

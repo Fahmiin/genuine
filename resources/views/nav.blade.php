@@ -6,30 +6,41 @@
                     <div class="col s2 m2">
                         <a href="/home" class="brand-logo left"><img src="{{asset(Storage::url('lingo.png'))}}" class="brand"></a>
                     </div>
-                    <div class="col m6 hide-on-med-and-down">
+                    <div class="col m5 hide-on-med-and-down">
                         <form action="{{route('liveSearch')}}" method="GET">
                             @csrf
-                            <div class="col m8 input-field">
+                            <div class="col m12 input-field">
                                 <input id="search" type="search" placeholder="Your search begins here..." class="searchNav" name="search" required>
                                 <span><ul class="searchResults collection hidden searchDropdown"></ul></span>
                             </div>
                         </form>
                     </div>
-                    <div class="col s8 m1">
-                        <a href="#"><i class="material-icons right hide-on-large-only">notifications</i></a>
+                    <div class="col s8 m2">
+                        @auth
+                        <a href="/notifications" class="waves-effect waves-light right"><i class="material-icons">notifications</i></a>
+                        @if(count($user->unreadNotifications))
+                        <span class="new badge orange darken-2 notif">{{$user->unreadNotifications->count()}}</span>
+                        @endif
+                        @endauth
                     </div>
                     <div class="col s2 m3">
                         @guest
-                            <a class='dropdown-trigger right hide-on-large-only' data-target='dropdownGuest'><i class="material-icons">menu</i></a>
+                            <a class="dropdown-trigger right hide-on-large-only" data-target="dropdownGuest"><i class="material-icons">menu</i></a>
                             <ul class="right hide-on-med-and-down">
                                 <li><a class="modal-trigger" href="#modalLogin">Login</a></li>
                                 <li><a class="modal-trigger" href="#modalSignup">Signup</a></li>  
                             </ul>
                         @else
-                            <a class='dropdown-trigger right' data-target='dropdownUser'>
-                                <img src="/uploads/profilepic/{{$user->profilepic}}" class="profilePicNav">
-                            </a>
-                            <h6 class="right welcome hide-on-med-and-down">Welcome, {{$user->name}}</h6>
+                            <div class="row">
+                                <div class="col m8 hide-on-med-and-down">
+                                    <h6 class="center-align welcome">Welcome, {{$user->name}}</h6>
+                                </div>
+                                <div class="col s12 m4">
+                                    <a class='dropdown-trigger center-align' data-target='dropdownUser'>
+                                        <img src="/uploads/profilepic/{{$user->profilepic}}" class="profilePicNav">
+                                    </a>
+                                </div>
+                            </div>
                         @endguest
                     </div>
                 </div>

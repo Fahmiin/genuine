@@ -14,4 +14,9 @@ class Bookmark extends Model
     {
     	return $this->belongsTo('App\User', 'userP_id');
     }
+
+    public function follower()
+    {
+    	return $this->belongsTo('App\User', 'user_id');
+    }
 }
