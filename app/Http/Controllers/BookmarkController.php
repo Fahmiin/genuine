@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notifications\NewFollower;
 use App\User;
 use App\Bookmark;
 use Auth;
@@ -101,6 +102,9 @@ class BookmarkController extends Controller
 	    		$bookmark->userP_id = $userP_id;
 		    	$bookmark->status = true;
 		    	$user->bookmarks()->save($bookmark);
+
+		    	$notif = new NewFollower($user);
+		    	$userP->notify($notif);
 
 		    	return response('faved');
 	    	}

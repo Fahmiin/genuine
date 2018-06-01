@@ -164,8 +164,8 @@ $(document).ready(() =>
 
 				if (data == 'faved')
 				{
-					$(follow).removeClass('orange darken-2');
-					$(follow).addClass('blue-grey darken-1 white-text')
+					$(follow).removeClass('orange darken-2')
+						.addClass('blue-grey darken-1 white-text')
 						.text('Unfollow')
 						.append('<i class="material-icons left">person</i>');
 				}
@@ -174,8 +174,8 @@ $(document).ready(() =>
 				{
 					$(follow).removeClass('blue-grey darken-1 white-text')
 						.text('Follow')
-						.append('<i class="material-icons left">person_add</i>');
-					$(follow).addClass('orange darken-2');
+						.append('<i class="material-icons left">person_add</i>')
+						.addClass('orange darken-2');
 				}
 			}
 		});

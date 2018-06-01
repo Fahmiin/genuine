@@ -33,10 +33,10 @@
                         @else
                             <div class="row">
                                 <div class="col m8 hide-on-med-and-down">
-                                    <h6 class="center-align welcome">Welcome, {{$user->name}}</h6>
+                                    <h6 class="right spacingTop">Welcome, {{$user->name}}</h6>
                                 </div>
                                 <div class="col s12 m4">
-                                    <a class='dropdown-trigger center-align' data-target='dropdownUser'>
+                                    <a class='dropdown-trigger' data-target='dropdownUser'>
                                         <img src="/uploads/profilepic/{{$user->profilepic}}" class="profilePicNav">
                                     </a>
                                 </div>
